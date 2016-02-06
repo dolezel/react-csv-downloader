@@ -12,8 +12,8 @@ addons:
     packages:
     - g++-4.8
 script:
-  - npm eslint
-  - npm test
+  - npm run eslint
+  - npm run test
 branches:
   only:
     - master
