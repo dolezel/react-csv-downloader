@@ -33,7 +33,7 @@ function createRows(columns, datas, separator, force) {
   return rows.join(newLine);
 }
 
-export default function csv(header, datas, separator, noHeader) {
+export default function csv(header, datas = [], separator = ',', noHeader = false) {
   let column = '';
   let displayHeader = '';
   let displayContent = '';
