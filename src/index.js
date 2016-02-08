@@ -9,23 +9,27 @@ const PrefixSuffixType = PropTypes.oneOfType([
 
 export default class CsvDownload extends Component {
   static propTypes = {
-    datas: PropTypes.arrayOf(PropTypes.object).isRequired,
-    filename: PropTypes.string.isRequired,
-    separator: PropTypes.string,
-    text: PropTypes.string,
-    suffix: PrefixSuffixType,
-    prefix: PrefixSuffixType,
     bom: PropTypes.bool,
-    noHeader: PropTypes.bool,
     children: PropTypes.oneOfType([
-      PropTypes.element,
       PropTypes.array,
-      PropTypes.string
+      PropTypes.string,
+      PropTypes.element
     ]),
     columns: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.object),
-      PropTypes.bool
+      PropTypes.bool,
+      PropTypes.array,
+      PropTypes.arrayOf(PropTypes.object)
     ]),
+    datas: PropTypes.arrayOf(PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.array
+    ])).isRequired,
+    filename: PropTypes.string.isRequired,
+    noHeader: PropTypes.bool,
+    prefix: PrefixSuffixType,
+    separator: PropTypes.string,
+    text: PropTypes.string,
+    suffix: PrefixSuffixType
   };
 
   static defaultProps = {
@@ -99,7 +103,6 @@ export default class CsvDownload extends Component {
             if (text) {
               return text;
             }
-
             return `Download`;
           })()}
         </button>

@@ -1,73 +1,56 @@
 const newLine = '\r\n';
 
-function createHeader(columns, separator) {
-  const header = columns.map(v => {
-    return v;
-  });
-  return header.join(separator) + newLine;
-}
+export default function csv(columns, datas, separator = ',', noHeader = false) {
+  let columnOrder;
+  const content = [];
+  const column = [];
 
-function createRows(columns, datas, separator, force) {
-  let column = '';
-  if (force) {
-    column = columns;
-  }
-  else {
-    column = columns.map(v => {
+  if (columns) {
+    columnOrder = columns.map(v => {
+      if (typeof v === 'string') {
+        return v;
+      }
+      if (!noHeader) {
+        column.push((typeof v.displayName !== 'undefined') ? v.displayName : v.id);
+      }
       return v.id;
     });
-  }
-  const content = datas.map(v => {
-    return column.map(k => {
-      if (typeof v[k] !== 'undefined') {
-        return v[k];
-      }
-      return '';
-    });
-  });
-
-  const rows = content.map(v => {
-    return v.join(separator);
-  });
-
-  return rows.join(newLine);
-}
-
-export default function csv(header, datas = [], separator = ',', noHeader = false) {
-  let column = '';
-  let displayHeader = '';
-  let displayContent = '';
-
-  if (header) {
-    column = header.map(v => {
-      if (typeof v.displayName !== 'undefined') {
-        return v.displayName;
-      }
-
-      return v.id;
-    });
+    if (column.length > 0) {
+      content.push(column.join(separator));
+    }
   }
   else {
-    column = [];
+    columnOrder = [];
     datas.map(v => {
-      Object.keys(v).map(k => {
-        if (column.indexOf(k) === -1) {
-          column.push(k);
-        }
+      if (!Array.isArray(v)) {
+        columnOrder = columnOrder.concat(Object.keys(v));
+      }
+    });
+    if (columnOrder.length > 0) {
+      columnOrder = columnOrder.filter((value, index, self) => {
+        return self.indexOf(value) === index;
       });
+
+      if (!noHeader) {
+        content.push(columnOrder.join(separator));
+      }
+    }
+  }
+
+  if (Array.isArray(datas)) {
+    datas.map(v => {
+      if (Array.isArray(v)) {
+        return v;
+      }
+      return columnOrder.map(k => {
+        if (typeof v[k] !== 'undefined') {
+          return v[k];
+        }
+        return '';
+      });
+    }).map(v => {
+      content.push(v.join(separator));
     });
   }
-
-  if (noHeader === false) {
-    displayHeader = createHeader(column, separator);
-  }
-
-  displayContent = createRows(
-    (!header) ? column : header,
-    datas,
-    separator,
-    !header
-  );
-
-  return `${displayHeader}${displayContent}`;
+  return content.join(newLine);
 }

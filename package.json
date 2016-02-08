@@ -6,7 +6,7 @@
   "scripts": {
     "test": "karma start --single-run --browsers PhantomJS",
     "eslint": "./node_modules/.bin/eslint src/",
-    "start": "./node_modules/.bin/webpack-dev-server --port 3000 --progress --colors --hot --inline",
+    "start": "./node_modules/.bin/webpack-dev-server --progress --colors --hot --inline",
     "build": "babel src -d dist",
     "postinstall": "npm run build"
   },
