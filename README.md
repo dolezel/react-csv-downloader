@@ -111,6 +111,10 @@ render() {
 // foobar;foobar
 ```
 
+## License
+
+[MIT License](http://opensource.org/licenses/MIT)
+
 [build-badge]: https://travis-ci.org/Terminux/react-csv-downloader.svg?branch=master
 [build]: https://travis-ci.org/Terminux/react-csv-downloader
 
