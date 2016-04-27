@@ -54,10 +54,15 @@ export default class CsvDownload extends Component {
     });
   }
 
+  isIE() {
+    return window.navigator.userAgent.indexOf("MSIE ") > -1 || !!navigator.userAgent.match(/Trident.*rv\:11\./);
+  }
+
   handleClick() {
-    const { suffix, prefix, bom } = this.props;
+    const { suffix, prefix, bom, separator } = this.props;
 
     let bomCode = '';
+    let blobBomCode = '';
     let filename = this.props.filename;
 
     if (filename.indexOf('.csv') === -1) {
@@ -66,6 +71,7 @@ export default class CsvDownload extends Component {
 
     if (bom) {
       bomCode = '%EF%BB%BF';
+      blobBomCode = '\ufeff';
     }
 
     if (suffix) {
@@ -86,11 +92,31 @@ export default class CsvDownload extends Component {
       }
     }
 
-    const a = document.createElement('a');
-    a.textContent = 'download';
-    a.download = filename;
-    a.href = `data:text/csv;charset=utf-8,${bomCode}${encodeURIComponent(this.state.csv)}`;
-    a.click();
+    if (this.isIE()) {
+      if (window.Blob && window.navigator.msSaveOrOpenBlob) {
+        const blob = new Blob([`${blobBomCode}${this.state.csv}`]);
+        window.navigator.msSaveOrOpenBlob(blob, filename);
+      }
+      else {
+        const iframe = document.createElement('iframe');
+        document.body.appendChild(iframe);
+        iframe.document.open('text/html', 'replace');
+        iframe.document.write(`sep=${separator}\r\n${bomCode}${this.state.csv}`);
+        iframe.document.close();
+        iframe.focus();
+        iframe.document.execCommand('SaveAs', true, filename);
+        document.body.removeChild(iframe);
+      }
+    }
+    else {
+      const a = document.createElement('a');
+      a.textContent = 'download';
+      a.download = filename;
+      a.href = `data:text/csv;charset=utf-8,${bomCode}${encodeURIComponent(this.state.csv)}`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
   }
 
   render() {
