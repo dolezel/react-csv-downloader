@@ -103,7 +103,7 @@ export default class CsvDownload extends Component {
             if (text) {
               return text;
             }
-            return `Download`;
+            return 'Download';
           })()}
         </button>
       );

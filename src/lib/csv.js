@@ -21,15 +21,13 @@ export default function csv(columns, datas, separator = ',', noHeader = false) {
   }
   else {
     columnOrder = [];
-    datas.map(v => {
+    datas.forEach(v => {
       if (!Array.isArray(v)) {
         columnOrder = columnOrder.concat(Object.keys(v));
       }
     });
     if (columnOrder.length > 0) {
-      columnOrder = columnOrder.filter((value, index, self) => {
-        return self.indexOf(value) === index;
-      });
+      columnOrder = columnOrder.filter((value, index, self) => self.indexOf(value) === index);
 
       if (!noHeader) {
         content.push(columnOrder.join(separator));
@@ -48,7 +46,7 @@ export default function csv(columns, datas, separator = ',', noHeader = false) {
         }
         return '';
       });
-    }).map(v => {
+    }).forEach(v => {
       content.push(v.join(separator));
     });
   }
