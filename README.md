@@ -1,5 +1,5 @@
 # React CSV Downloader
-[![Travis Build Status][build-badge]][build]
+[![CircleCI Status][build-badge]][build]
 [![Dependency Status][deps-badge]][deps]
 [![devDependency Status][dev-deps-badge]][dev-deps]
 
@@ -115,8 +115,8 @@ render() {
 
 [MIT License](http://opensource.org/licenses/MIT)
 
-[build-badge]: https://travis-ci.org/dolezel/react-csv-downloader.svg?branch=master
-[build]: https://travis-ci.org/dolezel/react-csv-downloader
+[build-badge]: https://circleci.com/gh/dolezel/react-csv-downloader.svg?style=svg
+[build]: https://circleci.com/gh/dolezel/workflows/react-csv-downloader
 
 [deps-badge]: https://david-dm.org/dolezel/react-csv-downloader.svg
 [deps]: https://david-dm.org/dolezel/react-csv-downloader
