@@ -87,9 +87,10 @@ export default class CsvDownload extends Component {
     }
 
     const a = document.createElement('a');
+    const blob = new Blob([`${bomCode}${this.state.csv}`], { type: 'text/csv;charset=utf-8' });
     a.textContent = 'download';
     a.download = filename;
-    a.href = `data:text/csv;charset=utf-8,${bomCode}${encodeURIComponent(this.state.csv)}`;
+    a.href = URL.createObjectURL(blob)
     a.click();
   }
 
