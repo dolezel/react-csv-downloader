@@ -1,7 +1,6 @@
 # React CSV Downloader
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/dolezel/react-csv-downloader.svg)](https://greenkeeper.io/)
-
+[![Greenkeeper badge][greenkeeper-badge]][greenkeeper]
 [![CircleCI Status][build-badge]][build]
 [![Dependency Status][deps-badge]][deps]
 [![devDependency Status][dev-deps-badge]][dev-deps]
@@ -10,13 +9,14 @@ A simple react component to allow download CSV file from js object
 
 ## Installation
 
-```javascript
-$ npm install --save-dev react-csv-downloader
+```sh
+npm install --save-dev dolezel/react-csv-downloader
 ```
+
 ## Usage
 Use with children component
 
-```javascript
+```jsx
 import CsvDownloader from 'react-csv-downloader';
 
 <CsvDownloader>
@@ -26,13 +26,13 @@ import CsvDownloader from 'react-csv-downloader';
 
 Use without children component
 
-```javascript
+```jsx
 <CsvDownloader text="Download"/>
 ```
 ### Datas
 pass the downloaded datas as a component prop
 
-```javascript
+```jsx
 const datas = [{
   cell1: 'row 1 - cell 1',
   cell2: 'row 1 - cell 2'
@@ -47,7 +47,7 @@ const datas = [{
 ### Column
 pass the columns definition as a component prop to change the cell display name. If column isn't passed the cell display name is automatically defined with datas keys
 
-```javascript
+```jsx
 const columns = [{
   id: 'cell1',
   displayName: 'Cell 1'
@@ -61,7 +61,6 @@ const columns = [{
 
 You can also use the columns definition to set the columns display order
 
-&nbsp;
 ## Props
 | Name      	| Type              	| Default 	| Required 	| Description                                                                       	|
 |-----------	|-------------------	|---------	|----------	|-----------------------------------------------------------------------------------	|
@@ -78,7 +77,7 @@ You can also use the columns definition to set the columns display order
 ## Full example
 pass the downloaded datas as a component prop
 
-```javascript
+```jsx
 render() {
   const columns = [{
     id: 'first',
@@ -117,6 +116,9 @@ render() {
 ## License
 
 [MIT License](http://opensource.org/licenses/MIT)
+
+[greenkeeper-badge]: https://badges.greenkeeper.io/dolezel/react-csv-downloader.svg
+[greenkeeper]: https://greenkeeper.io/
 
 [build-badge]: https://circleci.com/gh/dolezel/react-csv-downloader.svg?style=svg
 [build]: https://circleci.com/gh/dolezel/workflows/react-csv-downloader
