@@ -1,1 +1,1 @@
-export { en } from './en.js';
+export en from './en';

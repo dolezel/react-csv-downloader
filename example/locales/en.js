@@ -1,17 +1,17 @@
-import enLocaleData from 'react-intl/lib/locale-data/en';
+import enLocaleData from 'react-intl/locale-data/en';
 
-export const en = {
+export default {
   locale: enLocaleData,
   messages: {
     foo: {
       default: 'foo',
       bar: {
         default: 'bar',
-        full: 'foobar'
-      }
+        full: 'foobar',
+      },
     },
     test: {
-      default: 'toto {test}'
-    }
-  }
+      default: 'toto {test}',
+    },
+  },
 };

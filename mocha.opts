@@ -1,0 +1,3 @@
+--require babel-core/register
+--recursive
+--require ./mocha.bootstrap.js

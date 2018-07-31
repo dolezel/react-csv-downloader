@@ -1,39 +1,28 @@
-const webpack = require('webpack');
+const path = require('path');
 
-const config = {
+module.exports = {
+  mode: 'development',
   entry: {
-    'js/bundle': './example/index.js'
+    'js/bundle': './example/index.js',
   },
   output: {
+    path: path.resolve(__dirname, 'build/assets'),
     publicPath: '/assets/',
     filename: '[name].js',
-    path: './build/assets'
   },
-  cache: false,
-  debug: true,
-  devtool: 'sourcemap',
   devServer: {
     contentBase: './example',
-    inline: true
+    inline: true,
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js(x?)$/,
-        exclude: /node_modules/,
-        loader: 'react-hot!babel-loader'
-      }
-    ]
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
+    ],
   },
-  plugins: [
-    new webpack.NoErrorsPlugin()
-  ],
-  node: {
-    console: true,
-    fs: 'empty',
-    net: 'empty',
-    tls: 'empty'
-  }
 };
-
-module.exports = config;

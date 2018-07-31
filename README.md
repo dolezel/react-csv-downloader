@@ -115,11 +115,11 @@ render() {
 
 [MIT License](http://opensource.org/licenses/MIT)
 
-[build-badge]: https://travis-ci.org/Terminux/react-csv-downloader.svg?branch=master
-[build]: https://travis-ci.org/Terminux/react-csv-downloader
+[build-badge]: https://travis-ci.org/dolezel/react-csv-downloader.svg?branch=master
+[build]: https://travis-ci.org/dolezel/react-csv-downloader
 
-[deps-badge]: https://david-dm.org/Terminux/react-csv-downloader.svg
-[deps]: https://david-dm.org/Terminux/react-csv-downloader
+[deps-badge]: https://david-dm.org/dolezel/react-csv-downloader.svg
+[deps]: https://david-dm.org/dolezel/react-csv-downloader
 
-[dev-deps-badge]: https://david-dm.org/Terminux/react-csv-downloader/dev-status.svg
-[dev-deps]: https://david-dm.org/Terminux/react-csv-downloader#info=devDependencies
+[dev-deps-badge]: https://david-dm.org/dolezel/react-csv-downloader/dev-status.svg
+[dev-deps]: https://david-dm.org/dolezel/react-csv-downloader#info=devDependencies

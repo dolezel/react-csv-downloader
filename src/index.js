@@ -1,10 +1,11 @@
-import React, { PropTypes, Component } from 'react';
-import csv from './lib/csv.js';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import toCsv from './lib/csv';
 
 const PrefixSuffixType = PropTypes.oneOfType([
   PropTypes.bool,
   PropTypes.string,
-  PropTypes.number
+  PropTypes.number,
 ]);
 
 export default class CsvDownload extends Component {
@@ -13,66 +14,58 @@ export default class CsvDownload extends Component {
     children: PropTypes.oneOfType([
       PropTypes.array,
       PropTypes.string,
-      PropTypes.element
+      PropTypes.element,
     ]),
     columns: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.array,
-      PropTypes.arrayOf(PropTypes.object)
+      PropTypes.arrayOf(PropTypes.object),
     ]),
     datas: PropTypes.arrayOf(PropTypes.oneOfType([
       PropTypes.object,
-      PropTypes.array
+      PropTypes.array,
     ])).isRequired,
     filename: PropTypes.string.isRequired,
     noHeader: PropTypes.bool,
     prefix: PrefixSuffixType,
     separator: PropTypes.string,
     text: PropTypes.string,
-    suffix: PrefixSuffixType
+    suffix: PrefixSuffixType,
   };
 
   static defaultProps = {
     separator: ',',
     columns: false,
     bom: true,
-    noHeader: false
+    noHeader: false,
   };
 
-  constructor(props) {
-    super();
-    this.handleClick = this.handleClick.bind(this);
-    this.state = {
-      csv: csv(props.columns, props.datas, props.separator, props.noHeader)
-    };
-  }
+  state = {
+    // eslint-disable-next-line react/destructuring-assignment
+    csv: toCsv(this.props.columns, this.props.datas, this.props.separator, this.props.noHeader),
+  };
 
   componentWillReceiveProps(props) {
     this.setState({
-      ...this.state,
-      csv: csv(props.columns, props.datas, props.separator, props.noHeader)
+      csv: toCsv(props.columns, props.datas, props.separator, props.noHeader),
     });
   }
 
-  handleClick() {
+  handleClick = () => {
     const { suffix, prefix, bom } = this.props;
+    const { csv } = this.state;
 
-    let bomCode = '';
-    let filename = this.props.filename;
+    const bomCode = bom ? '%EF%BB%BF' : '';
+    let { filename } = this.props;
 
     if (filename.indexOf('.csv') === -1) {
       filename += '.csv';
     }
 
-    if (bom) {
-      bomCode = '%EF%BB%BF';
-    }
-
     if (suffix) {
       if (typeof suffix === 'string' || typeof suffix === 'number') {
         filename = filename.replace('.csv', `_${suffix}.csv`);
-      }
-      else {
+      } else {
         filename = filename.replace('.csv', `_${(new Date()).getTime()}.csv`);
       }
     }
@@ -80,26 +73,25 @@ export default class CsvDownload extends Component {
     if (prefix) {
       if (typeof prefix === 'string' || typeof prefix === 'number') {
         filename = `${prefix}_${filename}`;
-      }
-      else {
+      } else {
         filename = `${(new Date()).getTime()}_${filename}`;
       }
     }
 
     const a = document.createElement('a');
-    const blob = new Blob([`${bomCode}${this.state.csv}`], { type: 'text/csv;charset=utf-8' });
+    const blob = new Blob([`${bomCode}${csv}`], { type: 'text/csv;charset=utf-8' });
     a.textContent = 'download';
     a.download = filename;
-    a.href = URL.createObjectURL(blob)
+    a.href = URL.createObjectURL(blob);
     a.click();
-  }
+  };
 
   render() {
     const { children, text } = this.props;
 
     if (typeof children === 'undefined') {
       return (
-        <button onClick={this.handleClick}>
+        <button onClick={this.handleClick} type="button">
           {(() => {
             if (text) {
               return text;
@@ -111,7 +103,7 @@ export default class CsvDownload extends Component {
     }
 
     return (
-      <div onClick={this.handleClick}>
+      <div onClick={this.handleClick} onKeyPress={this.handleClick} role="button" tabIndex={0}>
         {children}
       </div>
     );
