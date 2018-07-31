@@ -1,4 +1,7 @@
 # React CSV Downloader
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/dolezel/react-csv-downloader.svg)](https://greenkeeper.io/)
+
 [![CircleCI Status][build-badge]][build]
 [![Dependency Status][deps-badge]][deps]
 [![devDependency Status][dev-deps-badge]][dev-deps]
