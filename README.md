@@ -10,7 +10,7 @@ A simple react component to allow download CSV file from js object
 ## Installation
 
 ```sh
-npm install --save-dev dolezel/react-csv-downloader
+npm install --save-dev react-csv-downloader
 ```
 
 ## Usage
