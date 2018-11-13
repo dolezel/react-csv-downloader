@@ -55,6 +55,6 @@
   "dependencies": {
     "prop-types": "^15",
     "react": "^16.6.3",
-    "react-dom": "^15 || ^16"
+    "react-dom": "^16.6.3"
   }
 }
