@@ -1,6 +1,6 @@
 # React CSV Downloader
 
-[![Greenkeeper badge][greenkeeper-badge]][greenkeeper]
+[![Renovate badge][renovate-badge]][renovate]
 [![CircleCI Status][build-badge]][build]
 [![Dependency Status][deps-badge]][deps]
 [![devDependency Status][dev-deps-badge]][dev-deps]
@@ -117,8 +117,8 @@ render() {
 
 [MIT License](http://opensource.org/licenses/MIT)
 
-[greenkeeper-badge]: https://badges.greenkeeper.io/dolezel/react-csv-downloader.svg
-[greenkeeper]: https://greenkeeper.io/
+[renovate-badge]: https://img.shields.io/badge/renovate-enabled-brightgreen.svg
+[renovate]: https://renovatebot.com/
 
 [build-badge]: https://circleci.com/gh/dolezel/react-csv-downloader.svg?style=svg
 [build]: https://circleci.com/gh/dolezel/workflows/react-csv-downloader
