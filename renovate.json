@@ -1,3 +1,9 @@
 {
-  "extends": ["config:base", ":automergeMinor", ":automergeLinters", "schedule:weekly"]
+  "extends": [
+    "config:base",
+    ":automergeMinor",
+    ":automergeLinters",
+    "schedule:weekly",
+    "group:allNonMajor"
+  ]
 }
