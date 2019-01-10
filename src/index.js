@@ -84,9 +84,9 @@ export default class CsvDownload extends Component {
     a.download = filename;
     a.href = URL.createObjectURL(blob);
     a.dispatchEvent(new MouseEvent('click', {
-      'view': window,
-      'bubbles': true,
-      'cancelable': false
+      view: window,
+      bubbles: true,
+      cancelable: false,
     }));
   };
 
