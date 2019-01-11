@@ -7,6 +7,13 @@
 - Fixed up click event for mozilla (Using MouseEvent) [#66](https://github.com/dolezel/react-csv-downloader/pull/66)
 - Upgraded dependencies, example fixes, peerDependencies [#67](https://github.com/dolezel/react-csv-downloader/pull/67)
 
+## [0.2.0] - 2018-09-04
+
+### Changed
+
+- Use Blob instead of Data URI to support large file downloads [#1](https://github.com/dolezel/react-csv-downloader/pull/1)
+- Updated dependencies and rewritten tooling
+
 ## [0.1.1] - 2016-05-03
 
 ### Fixed
