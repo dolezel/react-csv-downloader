@@ -30,14 +30,14 @@
   },
   "homepage": "https://github.com/dolezel/react-csv-downloader",
   "devDependencies": {
-    "babel-cli": "6.26.0",
-    "babel-core": "6.26.3",
+    "@babel/cli": "7.2.3",
+    "@babel/core": "7.2.2",
+    "@babel/plugin-proposal-class-properties": "7.2.3",
+    "@babel/preset-env": "7.2.3",
+    "@babel/preset-react": "7.0.0",
+    "@babel/register": "7.0.0",
     "babel-eslint": "10.0.1",
     "babel-loader": "8.0.5",
-    "babel-plugin-transform-class-properties": "6.24.1",
-    "babel-plugin-transform-object-rest-spread": "6.26.0",
-    "babel-preset-env": "1.7.0",
-    "babel-preset-react": "6.24.1",
     "chai": "4.2.0",
     "eslint": "5.12.0",
     "eslint-config-airbnb": "17.1.0",
@@ -45,6 +45,9 @@
     "eslint-plugin-jsx-a11y": "6.1.2",
     "eslint-plugin-react": "7.12.3",
     "mocha": "5.2.0",
+    "prop-types": "15.6.2",
+    "react": "16.7.0",
+    "react-dom": "16.7.0",
     "react-hot-loader": "4.6.3",
     "react-intl": "2.7.2",
     "sinon-chai": "3.3.0",
@@ -52,9 +55,8 @@
     "webpack-cli": "3.2.0",
     "webpack-dev-server": "3.1.14"
   },
-  "dependencies": {
+  "peerDependencies": {
     "prop-types": "^15",
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3"
+    "react": "^16.6.3"
   }
 }
