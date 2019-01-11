@@ -45,6 +45,9 @@
     "eslint-plugin-jsx-a11y": "6.1.2",
     "eslint-plugin-react": "7.12.3",
     "mocha": "5.2.0",
+    "prop-types": "15.6.2",
+    "react": "16.7.0",
+    "react-dom": "16.7.0",
     "react-hot-loader": "4.6.3",
     "react-intl": "2.7.2",
     "sinon-chai": "3.3.0",
@@ -52,9 +55,8 @@
     "webpack-cli": "3.2.0",
     "webpack-dev-server": "3.1.14"
   },
-  "dependencies": {
+  "peerDependencies": {
     "prop-types": "^15",
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3"
+    "react": "^16.6.3"
   }
 }
