@@ -1,5 +1,11 @@
 # Change Log
 
+## [1.1.0] - 2019-01-23
+
+### Fixed
+
+- Changing BOM to \ufeff [#72](https://github.com/dolezel/react-csv-downloader/pull/72)
+
 ## [1.0.0] - 2019-01-11
 
 ### Changed
