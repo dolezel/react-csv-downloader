@@ -55,7 +55,7 @@ export default class CsvDownload extends Component {
     const { suffix, prefix, bom } = this.props;
     const { csv } = this.state;
 
-    const bomCode = bom ? '%EF%BB%BF' : '';
+    const bomCode = bom ? '\ufeff' : '';
     let { filename } = this.props;
 
     if (filename.indexOf('.csv') === -1) {
