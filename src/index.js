@@ -9,37 +9,6 @@ const PrefixSuffixType = PropTypes.oneOfType([
 ]);
 
 export default class CsvDownload extends Component {
-  static propTypes = {
-    bom: PropTypes.bool,
-    children: PropTypes.oneOfType([
-      PropTypes.array,
-      PropTypes.string,
-      PropTypes.element,
-    ]),
-    columns: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.array,
-      PropTypes.arrayOf(PropTypes.object),
-    ]),
-    datas: PropTypes.arrayOf(PropTypes.oneOfType([
-      PropTypes.object,
-      PropTypes.array,
-    ])).isRequired,
-    filename: PropTypes.string.isRequired,
-    noHeader: PropTypes.bool,
-    prefix: PrefixSuffixType,
-    separator: PropTypes.string,
-    text: PropTypes.string,
-    suffix: PrefixSuffixType,
-  };
-
-  static defaultProps = {
-    separator: ',',
-    columns: false,
-    bom: true,
-    noHeader: false,
-  };
-
   state = {
     // eslint-disable-next-line react/destructuring-assignment
     csv: toCsv(this.props.columns, this.props.datas, this.props.separator, this.props.noHeader),
@@ -113,3 +82,34 @@ export default class CsvDownload extends Component {
     );
   }
 }
+
+CsvDownload.propTypes = {
+  bom: PropTypes.bool,
+  children: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.string,
+    PropTypes.element,
+  ]),
+  columns: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.array,
+    PropTypes.arrayOf(PropTypes.object),
+  ]),
+  datas: PropTypes.arrayOf(PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
+  ])).isRequired,
+  filename: PropTypes.string.isRequired,
+  noHeader: PropTypes.bool,
+  prefix: PrefixSuffixType,
+  separator: PropTypes.string,
+  text: PropTypes.string,
+  suffix: PrefixSuffixType,
+};
+
+CsvDownload.defaultProps = {
+  separator: ',',
+  columns: false,
+  bom: true,
+  noHeader: false,
+};
