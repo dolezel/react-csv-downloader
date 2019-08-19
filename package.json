@@ -39,8 +39,8 @@
     "babel-eslint": "10.0.2",
     "babel-loader": "8.0.6",
     "chai": "4.2.0",
-    "eslint": "6.1.0",
-    "eslint-config-airbnb": "18.0.0",
+    "eslint": "6.2.0",
+    "eslint-config-airbnb": "18.0.1",
     "eslint-plugin-import": "2.18.2",
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-react": "7.14.3",
@@ -50,8 +50,8 @@
     "react-dom": "16.9.0",
     "react-hot-loader": "4.12.11",
     "sinon-chai": "3.3.0",
-    "webpack": "4.39.1",
-    "webpack-cli": "3.3.6",
+    "webpack": "4.39.2",
+    "webpack-cli": "3.3.7",
     "webpack-dev-server": "3.8.0"
   },
   "peerDependencies": {
