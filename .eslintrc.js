@@ -15,7 +15,8 @@ module.exports = {
           "example/**"
         ]
       }
-    ]
+    ],
+    "react/state-in-constructor": ["error", "never"],
   },
   "plugins":[
     "react"
