@@ -51,8 +51,8 @@
     "react-hot-loader": "4.12.13",
     "sinon-chai": "3.3.0",
     "webpack": "4.40.2",
-    "webpack-cli": "3.3.8",
-    "webpack-dev-server": "3.8.0"
+    "webpack-cli": "3.3.9",
+    "webpack-dev-server": "3.8.1"
   },
   "peerDependencies": {
     "prop-types": "^15",
