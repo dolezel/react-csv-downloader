@@ -1,5 +1,12 @@
 # Change Log
 
+## [1.2.0] - 2019-10-03
+
+### Changed
+
+- dependencies and dev dependencies
+- create-react-app for example [#119](https://github.com/dolezel/react-csv-downloader/pull/119)
+
 ## [1.1.0] - 2019-01-23
 
 ### Fixed
