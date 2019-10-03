@@ -7,7 +7,7 @@
     "test": "mocha --opts ./mocha.opts \"src/**/*.spec.js\"",
     "lint": "eslint .",
     "start": "npm start --prefix example",
-    "build": "babel src -d dist",
+    "build": "babel src -d dist --ignore '**/*.spec.js'",
     "prepare": "npm run build"
   },
   "repository": {
@@ -29,7 +29,9 @@
     "url": "https://github.com/dolezel/react-csv-downloader/issues"
   },
   "homepage": "https://github.com/dolezel/react-csv-downloader",
-  "dependencies": {},
+  "dependencies": {
+    "file-saver": "^2.0.2"
+  },
   "devDependencies": {
     "@babel/cli": "7.6.2",
     "@babel/core": "7.6.2",

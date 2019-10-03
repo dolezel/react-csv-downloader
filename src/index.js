@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import FileSaver from 'file-saver';
+
 import toCsv from './lib/csv';
 
 const PrefixSuffixType = PropTypes.oneOfType([
@@ -47,16 +49,8 @@ export default class CsvDownload extends Component {
       }
     }
 
-    const a = document.createElement('a');
     const blob = new Blob([`${bomCode}${csv}`], { type: 'text/csv;charset=utf-8' });
-    a.textContent = 'download';
-    a.download = filename;
-    a.href = URL.createObjectURL(blob);
-    a.dispatchEvent(new MouseEvent('click', {
-      view: window,
-      bubbles: true,
-      cancelable: false,
-    }));
+    FileSaver.saveAs(blob, filename);
   };
 
   render() {
