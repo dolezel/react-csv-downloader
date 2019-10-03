@@ -1,5 +1,11 @@
 # Change Log
 
+## [1.3.0] - 2019-10-03
+
+### Changed
+
+- Using file-saver for cross-browser support of saving files [#120](https://github.com/dolezel/react-csv-downloader/pull/120)
+
 ## [1.2.0] - 2019-10-03
 
 ### Changed
