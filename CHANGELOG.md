@@ -1,5 +1,11 @@
 # Change Log
 
+## [1.4.0] - 2019-10-04
+
+### Changed
+
+- Refactoring code, removing deprecated componentWillReceiveProps and computing csv when needed [#121](https://github.com/dolezel/react-csv-downloader/pull/121)
+
 ## [1.3.0] - 2019-10-03
 
 ### Changed
