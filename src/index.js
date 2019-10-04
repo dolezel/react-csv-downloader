@@ -4,49 +4,30 @@ import FileSaver from 'file-saver';
 
 import toCsv from './lib/csv';
 
-const PrefixSuffixType = PropTypes.oneOfType([
-  PropTypes.bool,
-  PropTypes.string,
-  PropTypes.number,
-]);
-
 export default class CsvDownload extends Component {
-  state = {
-    // eslint-disable-next-line react/destructuring-assignment
-    csv: toCsv(this.props.columns, this.props.datas, this.props.separator, this.props.noHeader),
-  };
-
-  componentWillReceiveProps(props) {
-    this.setState({
-      csv: toCsv(props.columns, props.datas, props.separator, props.noHeader),
-    });
-  }
-
   handleClick = () => {
-    const { suffix, prefix, bom } = this.props;
-    const { csv } = this.state;
+    const {
+      suffix, prefix, bom, columns, datas, separator, noHeader,
+    } = this.props;
+    const csv = toCsv(columns, datas, separator, noHeader);
 
     const bomCode = bom ? '\ufeff' : '';
     let { filename } = this.props;
 
-    if (filename.indexOf('.csv') === -1) {
+    if (filename.indexOf('.csv') < 0) {
       filename += '.csv';
     }
 
     if (suffix) {
-      if (typeof suffix === 'string' || typeof suffix === 'number') {
-        filename = filename.replace('.csv', `_${suffix}.csv`);
-      } else {
-        filename = filename.replace('.csv', `_${(new Date()).getTime()}.csv`);
-      }
+      filename = typeof suffix === 'string' || typeof suffix === 'number'
+        ? filename.replace('.csv', `_${suffix}.csv`)
+        : filename.replace('.csv', `_${(new Date()).getTime()}.csv`);
     }
 
     if (prefix) {
-      if (typeof prefix === 'string' || typeof prefix === 'number') {
-        filename = `${prefix}_${filename}`;
-      } else {
-        filename = `${(new Date()).getTime()}_${filename}`;
-      }
+      filename = typeof prefix === 'string' || typeof prefix === 'number'
+        ? `${prefix}_${filename}`
+        : `${(new Date()).getTime()}_${filename}`;
     }
 
     const blob = new Blob([`${bomCode}${csv}`], { type: 'text/csv;charset=utf-8' });
@@ -56,26 +37,25 @@ export default class CsvDownload extends Component {
   render() {
     const { children, text } = this.props;
 
-    if (typeof children === 'undefined') {
-      return (
+    return typeof children === 'undefined'
+      ? (
         <button onClick={this.handleClick} type="button">
-          {(() => {
-            if (text) {
-              return text;
-            }
-            return 'Download';
-          })()}
+          {text || 'Download'}
         </button>
+      )
+      : (
+        <div onClick={this.handleClick} onKeyPress={this.handleClick} role="button" tabIndex={0}>
+          {children}
+        </div>
       );
-    }
-
-    return (
-      <div onClick={this.handleClick} onKeyPress={this.handleClick} role="button" tabIndex={0}>
-        {children}
-      </div>
-    );
   }
 }
+
+const PrefixSuffixType = PropTypes.oneOfType([
+  PropTypes.bool,
+  PropTypes.string,
+  PropTypes.number,
+]);
 
 CsvDownload.propTypes = {
   bom: PropTypes.bool,
