@@ -47,7 +47,7 @@
     "eslint-plugin-import": "2.18.2",
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-react": "7.16.0",
-    "mocha": "6.2.1",
+    "mocha": "6.2.2",
     "prop-types": "15.7.2",
     "react": "16.10.2",
     "rimraf": "3.0.0",
