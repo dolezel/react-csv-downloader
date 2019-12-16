@@ -7,9 +7,9 @@ import toCsv from './lib/csv';
 export default class CsvDownload extends Component {
   handleClick = () => {
     const {
-      suffix, prefix, bom, columns, datas, separator, noHeader,
+      suffix, prefix, bom, columns, datas, separator, noHeader, wrapColumnChar,
     } = this.props;
-    const csv = toCsv(columns, datas, separator, noHeader);
+    const csv = toCsv(columns, datas, separator, noHeader, wrapColumnChar);
 
     const bomCode = bom ? '\ufeff' : '';
     let { filename } = this.props;
@@ -79,6 +79,7 @@ CsvDownload.propTypes = {
   separator: PropTypes.string,
   text: PropTypes.string,
   suffix: PrefixSuffixType,
+  wrapColumnChar: PropTypes.string,
 };
 
 CsvDownload.defaultProps = {
