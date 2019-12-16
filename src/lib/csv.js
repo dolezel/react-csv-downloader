@@ -1,6 +1,6 @@
 const newLine = '\r\n';
 
-export default function csv(columns, datas, separator = ',', noHeader = false, wrapColumnChar = "") {
+export default function csv(columns, datas, separator = ',', noHeader = false, wrapColumnChar = '') {
   const columnOrder = columns
     ? columns.map((v) => (typeof v === 'string' ? v : v.id))
     : datas.reduce(
@@ -21,14 +21,14 @@ export default function csv(columns, datas, separator = ',', noHeader = false, w
         return v.id;
       })
       : columnOrder;
-    content.push(headers.map(header=> wrapColumnChar+header+wrapColumnChar).join(separator));
+    content.push(headers.map((header) => wrapColumnChar + header + wrapColumnChar).join(separator));
   }
 
   if (Array.isArray(datas)) {
     datas.map((v) => (Array.isArray(v)
       ? v
       : columnOrder.map((k) => (typeof v[k] === 'undefined' ? '' : v[k])))).forEach((v) => {
-      content.push(v.map(v=> wrapColumnChar+v+wrapColumnChar).join(separator));
+      content.push(v.map((colVal) => wrapColumnChar + colVal + wrapColumnChar).join(separator));
     });
   }
 
