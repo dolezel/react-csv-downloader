@@ -63,6 +63,56 @@ describe('CSV Creator', () => {
     });
   });
 
+  describe('Column Wrap', () => {
+    const separator = ',';
+    const wrapColumnChar = '"';
+
+    it('Single cell', () => {
+      const result = csv(columnSet1, dataSet1, undefined, undefined, wrapColumnChar);
+      expect(result).to.equal(`${wrapColumnChar}cell1${wrapColumnChar}${newLine}${wrapColumnChar}row1${wrapColumnChar}`);
+    });
+
+    it('Multiple cell', () => {
+      const result = csv(columnSet2, dataSet2, undefined, undefined, wrapColumnChar);
+      expect(result).to.equal(`${wrapColumnChar}cell1${wrapColumnChar}${separator}${wrapColumnChar}cell2${wrapColumnChar}${newLine}${wrapColumnChar}row1${wrapColumnChar}${separator}${wrapColumnChar}row1${wrapColumnChar}`);
+    });
+
+    it('Header display name', () => {
+      const result = csv(columnSet3, dataSet1, undefined, undefined, wrapColumnChar);
+      expect(result).to.equal(`${wrapColumnChar}Cell name${wrapColumnChar}${newLine}${wrapColumnChar}row1${wrapColumnChar}`);
+    });
+
+    it('Ordered cell', () => {
+      const result = csv(columnSet4, dataSet2, undefined, undefined, wrapColumnChar);
+      expect(result).to.equal(`${wrapColumnChar}cell2${wrapColumnChar}${separator}${wrapColumnChar}cell1${wrapColumnChar}${newLine}${wrapColumnChar}row1${wrapColumnChar}${separator}${wrapColumnChar}row1${wrapColumnChar}`);
+    });
+
+    it('No header', () => {
+      const result = csv(columnSet1, dataSet1, separator, true, wrapColumnChar);
+      expect(result).to.equal(`${wrapColumnChar}row1${wrapColumnChar}`);
+    });
+
+    it('Auto header', () => {
+      const result = csv(false, dataSet2, undefined, undefined, wrapColumnChar);
+      expect(result).to.equal(`${wrapColumnChar}cell1${wrapColumnChar}${separator}${wrapColumnChar}cell2${wrapColumnChar}${newLine}${wrapColumnChar}row1${wrapColumnChar}${separator}${wrapColumnChar}row1${wrapColumnChar}`);
+    });
+
+    it('array of array datas - single row', () => {
+      const result = csv(false, dataSet3, undefined, undefined, wrapColumnChar);
+      expect(result).to.equal(`${wrapColumnChar}cell1${wrapColumnChar}${separator}${wrapColumnChar}cell2${wrapColumnChar}`);
+    });
+
+    it('array of array datas - multiple row', () => {
+      const result = csv(false, dataSet4, undefined, undefined, wrapColumnChar);
+      expect(result).to.equal(`${wrapColumnChar}cell1${wrapColumnChar}${separator}${wrapColumnChar}cell2${wrapColumnChar}${newLine}${wrapColumnChar}cell1${wrapColumnChar}${separator}${wrapColumnChar}cell2${wrapColumnChar}`);
+    });
+
+    it('array of array datas - with header', () => {
+      const result = csv(columnSet4, dataSet4, undefined, undefined, wrapColumnChar);
+      expect(result).to.equal(`${wrapColumnChar}cell2${wrapColumnChar}${separator}${wrapColumnChar}cell1${wrapColumnChar}${newLine}${wrapColumnChar}cell1${wrapColumnChar}${separator}${wrapColumnChar}cell2${wrapColumnChar}${newLine}${wrapColumnChar}cell1${wrapColumnChar}${separator}${wrapColumnChar}cell2${wrapColumnChar}`);
+    });
+  });
+
   describe('Semicolon separator', () => {
     const separator = ';';
 
