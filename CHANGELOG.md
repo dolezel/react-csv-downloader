@@ -1,5 +1,11 @@
 # Change Log
 
+## [1.5.0] - 2019-12-17
+
+### Added
+
+- Add functionality to wrap column value wih any character [#138](https://github.com/dolezel/react-csv-downloader/pull/138)
+
 ## [1.4.0] - 2019-10-04
 
 ### Changed
