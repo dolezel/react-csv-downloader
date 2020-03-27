@@ -1,4 +1,6 @@
-const chai = require('chai');
-const sinonChai = require('sinon-chai');
+const config = require("./tsconfig.json");
 
-chai.use(sinonChai);
+config.compilerOptions.module = "commonjs";
+config.transpileOnly = true
+
+require("ts-node").register(config);
