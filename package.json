@@ -33,6 +33,9 @@
     "url": "https://github.com/dolezel/react-csv-downloader/issues"
   },
   "homepage": "https://github.com/dolezel/react-csv-downloader",
+  "engines": {
+    "npm": "6.14.4"
+  },
   "dependencies": {
     "file-saver": "^2.0.2"
   },
