@@ -1,10 +1,16 @@
 # Change Log
 
+## [1.6.0] - 2020-03-27
+
+### Added
+
+- Rewritten in Typescript [#123](https://github.com/dolezel/react-csv-downloader/pull/123)
+
 ## [1.5.0] - 2019-12-17
 
 ### Added
 
-- Add functionality to wrap column value wih any character [#138](https://github.com/dolezel/react-csv-downloader/pull/138)
+- Add functionality to wrap column value with any character [#138](https://github.com/dolezel/react-csv-downloader/pull/138)
 
 ## [1.4.0] - 2019-10-04
 
