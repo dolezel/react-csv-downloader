@@ -70,8 +70,8 @@ You can also use the columns definition to set the columns display order
 | filename  	  | string            	| null    	|   true   	| You can pass the filename without extension. The extension is automatically added 	|
 | separator 	  | string            	| ','     	|   false  	|                                                                                   	|
 | noHeader  	  | bool              	| false   	|   false  	| If `true` the header isn't added to the csv file                                   	|
-| prefix    	  | string or boolean 	| false   	|   false  	| Filename prefix. If `true` prefix becomes a date in YYYYMMDDhhiiss format          	|
-| suffix    	  | string or boolean 	| false   	|   false  	| Filename suffix/postfix. If `true` suffix becomes a date in YYYYMMDDhhiiss format  	|
+| prefix    	  | string or boolean 	| false   	|   false  	| Filename prefix. If `true` prefix becomes a timestamp    	|
+| suffix    	  | string or boolean 	| false   	|   false  	| Filename suffix/postfix. If `true` suffix becomes a timestamp  	|
 | text      	  | string            	| null    	|   false  	| Download button text. Used if no children component.                              	|
 | wrapColumnChar| string            	| ''    	  |   false  	| Character to wrap every data and header value with.                              	  |
 
