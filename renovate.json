@@ -4,6 +4,10 @@
     ":automergeMinor",
     ":automergeLinters",
     "schedule:weekly",
-    "group:allNonMajor"
-  ]
+    "group:allNonMajor",
+    ":pinOnlyDevDependencies"
+  ],
+  "postUpgradeTasks": {
+    "commands": ["npm run lint -- --fix"]
+  }
 }
