@@ -115,6 +115,10 @@ render() {
 // 'foobar';'foobar'
 ```
 
+## Get CSV contents
+
+If you just need to get CSV contents, import `react-csv-downloader/dist/lib/csv` function and use it directly.
+
 ## License
 
 [MIT License](http://opensource.org/licenses/MIT)

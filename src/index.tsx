@@ -20,11 +20,7 @@ export interface ICsvDownloadProps {
 
 type DefaultProps = 'bom' | 'columns' | 'noHeader' | 'separator'
 
-interface ICsvDownloadState {
-  csv: string
-}
-
-export default class CsvDownload extends React.Component<ICsvDownloadProps, ICsvDownloadState> {
+export default class CsvDownload extends React.Component<ICsvDownloadProps> {
   public static defaultProps: Pick<ICsvDownloadProps, DefaultProps> = {
     bom: true,
     columns: false,
@@ -32,31 +28,9 @@ export default class CsvDownload extends React.Component<ICsvDownloadProps, ICsv
     separator: ',',
   }
 
-  public state: ICsvDownloadState = {
-    csv: toCsv(
-      this.props.columns,
-      this.props.datas,
-      this.props.separator,
-      this.props.noHeader,
-      this.props.wrapColumnChar,
-    ),
-  }
-
-  public componentWillReceiveProps(props: ICsvDownloadProps) {
-    this.setState({
-      csv: toCsv(
-        props.columns,
-        props.datas,
-        props.separator,
-        props.noHeader,
-        props.wrapColumnChar,
-      ),
-    })
-  }
-
   public handleClick = () => {
-    const { suffix, prefix, bom } = this.props
-    const { csv } = this.state
+    const { suffix, prefix, bom, columns, datas, separator, noHeader, wrapColumnChar } = this.props
+    const csv = toCsv(columns, datas, separator, noHeader, wrapColumnChar)
 
     const bomCode = bom ? '\ufeff' : ''
     let { filename } = this.props
