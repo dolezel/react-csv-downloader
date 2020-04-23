@@ -1,5 +1,11 @@
 # Change Log
 
+## [1.7.0] - 2020-04-23
+
+### Changed
+
+- Compute data on click [#163](https://github.com/dolezel/react-csv-downloader/pull/163)
+
 ## [1.6.0] - 2020-03-27
 
 ### Added
