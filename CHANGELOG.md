@@ -1,5 +1,11 @@
 # Change Log
 
+## [1.8.0] - 2020-04-23
+
+### Changed
+
+- Compiling as commonjs [#165](https://github.com/dolezel/react-csv-downloader/pull/165)
+
 ## [1.7.0] - 2020-04-23
 
 ### Changed
