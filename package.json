@@ -43,7 +43,7 @@
     "@types/chai": "4.2.11",
     "@types/file-saver": "2.0.1",
     "@types/mocha": "7.0.2",
-    "@types/react": "16.9.34",
+    "@types/react": "16.9.35",
     "chai": "4.2.0",
     "mocha": "7.1.2",
     "react": "16.13.1",
@@ -52,7 +52,7 @@
     "tslint": "6.1.2",
     "tslint-react": "5.0.0",
     "tslint-sonarts": "1.9.0",
-    "typescript": "3.8.3"
+    "typescript": "3.9.2"
   },
   "peerDependencies": {
     "react": "^16.6.3"
