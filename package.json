@@ -43,7 +43,7 @@
     "@types/chai": "4.2.11",
     "@types/file-saver": "2.0.1",
     "@types/mocha": "7.0.2",
-    "@types/react": "16.9.35",
+    "@types/react": "16.9.36",
     "chai": "4.2.0",
     "mocha": "7.2.0",
     "react": "16.13.1",
