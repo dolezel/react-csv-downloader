@@ -19,48 +19,48 @@ describe('CSV Creator', () => {
   describe('Default separator', () => {
     const separator = ','
 
-    it('Single cell', () => {
-      const result = csv(columnSet1, dataSet1)
+    it('Single cell', async () => {
+      const result = await csv({ columns: columnSet1, datas: dataSet1 })
       expect(result).to.equal(`cell1${newLine}row1`)
     })
 
-    it('Multiple cell', () => {
-      const result = csv(columnSet2, dataSet2)
+    it('Multiple cell', async () => {
+      const result = await csv({ columns: columnSet2, datas: dataSet2})
       expect(result).to.equal(`cell1${separator}cell2${newLine}row1${separator}row1`)
     })
 
-    it('Header display name', () => {
-      const result = csv(columnSet3, dataSet1)
+    it('Header display name', async () => {
+      const result = await csv({ columns: columnSet3, datas: dataSet1})
       expect(result).to.equal(`Cell name${newLine}row1`)
     })
 
-    it('Ordered cell', () => {
-      const result = csv(columnSet4, dataSet2)
+    it('Ordered cell', async () => {
+      const result = await csv({ columns: columnSet4, datas: dataSet2})
       expect(result).to.equal(`cell2${separator}cell1${newLine}row1${separator}row1`)
     })
 
-    it('No header', () => {
-      const result = csv(columnSet1, dataSet1, separator, true)
+    it('No header', async () => {
+      const result = await csv({ columns: columnSet1, datas: dataSet1, separator, noHeader: true})
       expect(result).to.equal('row1')
     })
 
-    it('Auto header', () => {
-      const result = csv(false, dataSet2)
+    it('Auto header', async () => {
+      const result = await csv({ columns: false, datas: dataSet2})
       expect(result).to.equal(`cell1${separator}cell2${newLine}row1${separator}row1`)
     })
 
-    it('array of array datas - single row', () => {
-      const result = csv(false, dataSet3)
+    it('array of array datas - single row', async () => {
+      const result = await csv({ columns: false, datas: dataSet3})
       expect(result).to.equal(`cell1${separator}cell2`)
     })
 
-    it('array of array datas - multiple row', () => {
-      const result = csv(false, dataSet4)
+    it('array of array datas - multiple row', async () => {
+      const result = await csv({ columns: false, datas: dataSet4})
       expect(result).to.equal(`cell1${separator}cell2${newLine}cell1${separator}cell2`)
     })
 
-    it('array of array datas - with header', () => {
-      const result = csv(columnSet4, dataSet4)
+    it('array of array datas - with header', async () => {
+      const result = await csv({ columns: columnSet4, datas: dataSet4})
       expect(result).to.equal(`cell2${separator}cell1${newLine}cell1${separator}cell2${newLine}cell1${separator}cell2`)
     })
   })
@@ -69,48 +69,48 @@ describe('CSV Creator', () => {
     const separator = ','
     const wrapColumnChar = '"'
 
-    it('Single cell', () => {
-      const result = csv(columnSet1, dataSet1, undefined, undefined, wrapColumnChar)
+    it('Single cell', async () => {
+      const result = await csv({ columns: columnSet1, datas: dataSet1, wrapColumnChar})
       expect(result).to.equal(`${wrapColumnChar}cell1${wrapColumnChar}${newLine}${wrapColumnChar}row1${wrapColumnChar}`)
     })
 
-    it('Multiple cell', () => {
-      const result = csv(columnSet2, dataSet2, undefined, undefined, wrapColumnChar)
+    it('Multiple cell', async () => {
+      const result = await csv({ columns: columnSet2, datas: dataSet2, wrapColumnChar})
       expect(result).to.equal(`${wrapColumnChar}cell1${wrapColumnChar}${separator}${wrapColumnChar}cell2${wrapColumnChar}${newLine}${wrapColumnChar}row1${wrapColumnChar}${separator}${wrapColumnChar}row1${wrapColumnChar}`)
     })
 
-    it('Header display name', () => {
-      const result = csv(columnSet3, dataSet1, undefined, undefined, wrapColumnChar)
+    it('Header display name', async () => {
+      const result = await csv({ columns: columnSet3, datas: dataSet1, wrapColumnChar})
       expect(result).to.equal(`${wrapColumnChar}Cell name${wrapColumnChar}${newLine}${wrapColumnChar}row1${wrapColumnChar}`)
     })
 
-    it('Ordered cell', () => {
-      const result = csv(columnSet4, dataSet2, undefined, undefined, wrapColumnChar)
+    it('Ordered cell', async () => {
+      const result = await csv({ columns: columnSet4, datas: dataSet2, wrapColumnChar})
       expect(result).to.equal(`${wrapColumnChar}cell2${wrapColumnChar}${separator}${wrapColumnChar}cell1${wrapColumnChar}${newLine}${wrapColumnChar}row1${wrapColumnChar}${separator}${wrapColumnChar}row1${wrapColumnChar}`)
     })
 
-    it('No header', () => {
-      const result = csv(columnSet1, dataSet1, separator, true, wrapColumnChar)
+    it('No header', async  () => {
+      const result = await csv({ columns: columnSet1, datas: dataSet1, separator, noHeader: true, wrapColumnChar})
       expect(result).to.equal(`${wrapColumnChar}row1${wrapColumnChar}`)
     })
 
-    it('Auto header', () => {
-      const result = csv(false, dataSet2, undefined, undefined, wrapColumnChar)
+    it('Auto header', async () => {
+      const result = await csv({ columns: false, datas: dataSet2, wrapColumnChar})
       expect(result).to.equal(`${wrapColumnChar}cell1${wrapColumnChar}${separator}${wrapColumnChar}cell2${wrapColumnChar}${newLine}${wrapColumnChar}row1${wrapColumnChar}${separator}${wrapColumnChar}row1${wrapColumnChar}`)
     })
 
-    it('array of array datas - single row', () => {
-      const result = csv(false, dataSet3, undefined, undefined, wrapColumnChar)
+    it('array of array datas - single row', async () => {
+      const result = await csv({ columns: false, datas: dataSet3, wrapColumnChar})
       expect(result).to.equal(`${wrapColumnChar}cell1${wrapColumnChar}${separator}${wrapColumnChar}cell2${wrapColumnChar}`)
     })
 
-    it('array of array datas - multiple row', () => {
-      const result = csv(false, dataSet4, undefined, undefined, wrapColumnChar)
+    it('array of array datas - multiple row', async () => {
+      const result = await csv({ columns: false, datas: dataSet4, wrapColumnChar})
       expect(result).to.equal(`${wrapColumnChar}cell1${wrapColumnChar}${separator}${wrapColumnChar}cell2${wrapColumnChar}${newLine}${wrapColumnChar}cell1${wrapColumnChar}${separator}${wrapColumnChar}cell2${wrapColumnChar}`)
     })
 
-    it('array of array datas - with header', () => {
-      const result = csv(columnSet4, dataSet4, undefined, undefined, wrapColumnChar)
+    it('array of array datas - with header', async () => {
+      const result = await csv({ columns: columnSet4, datas: dataSet4, wrapColumnChar})
       expect(result).to.equal(`${wrapColumnChar}cell2${wrapColumnChar}${separator}${wrapColumnChar}cell1${wrapColumnChar}${newLine}${wrapColumnChar}cell1${wrapColumnChar}${separator}${wrapColumnChar}cell2${wrapColumnChar}${newLine}${wrapColumnChar}cell1${wrapColumnChar}${separator}${wrapColumnChar}cell2${wrapColumnChar}`)
     })
   })
@@ -118,81 +118,59 @@ describe('CSV Creator', () => {
   describe('Semicolon separator', () => {
     const separator = ';'
 
-    it('Single cell', () => {
-      const result = csv(columnSet1, dataSet1, separator)
+    it('Single cell', async () => {
+      const result = await csv({ columns: columnSet1, datas: dataSet1, separator})
       expect(result).to.equal(`cell1${newLine}row1`)
     })
 
-    it('Multiple cell', () => {
-      const result = csv(columnSet2, dataSet2, separator)
+    it('Multiple cell', async  () => {
+      const result = await csv({ columns: columnSet2, datas: dataSet2, separator})
       expect(result).to.equal(`cell1${separator}cell2${newLine}row1${separator}row1`)
     })
 
-    it('Header display name', () => {
-      const result = csv(columnSet3, dataSet1, separator)
+    it('Header display name', async  () => {
+      const result = await csv({ columns: columnSet3, datas: dataSet1, separator})
       expect(result).to.equal(`Cell name${newLine}row1`)
     })
 
-    it('Ordered cell', () => {
-      const result = csv(columnSet4, dataSet2, separator)
+    it('Ordered cell', async () => {
+      const result = await csv({ columns: columnSet4, datas: dataSet2, separator})
       expect(result).to.equal(`cell2${separator}cell1${newLine}row1${separator}row1`)
     })
 
-    it('No header', () => {
-      const result = csv(columnSet1, dataSet1, separator, true)
+    it('No header', async  () => {
+      const result = await csv({ columns: columnSet1, datas: dataSet1, separator, noHeader: true})
       expect(result).to.equal('row1')
     })
 
-    it('Auto header', () => {
-      const result = csv(false, dataSet2, separator)
+    it('Auto header', async () => {
+      const result = await csv({ columns: false, datas: dataSet2, separator})
       expect(result).to.equal(`cell1${separator}cell2${newLine}row1${separator}row1`)
     })
 
-    it('array of array datas - single row', () => {
-      const result = csv(false, dataSet3, separator)
+    it('array of array datas - single row', async () => {
+      const result = await csv({ columns: false, datas: dataSet3, separator})
       expect(result).to.equal(`cell1${separator}cell2`)
     })
 
-    it('array of array datas - multiple row', () => {
-      const result = csv(false, dataSet4, separator)
+    it('array of array datas - multiple row', async () => {
+      const result = await csv({ columns: false, datas: dataSet4, separator})
       expect(result).to.equal(`cell1${separator}cell2${newLine}cell1${separator}cell2`)
     })
 
-    it('array of array datas - with header', () => {
-      const result = csv(columnSet4, dataSet4, separator)
+    it('array of array datas - with header', async () => {
+      const result = await csv({ columns: columnSet4, datas: dataSet4, separator})
       expect(result).to.equal(`cell2${separator}cell1${newLine}cell1${separator}cell2${newLine}cell1${separator}cell2`)
     })
   })
 
-  describe('Headers', () => {
-    it('should insert header', () => {
-      const result = csv(columnSet1, dataSet5, ',', false)
-      expect(result).to.equal(`cell1${newLine}row1${newLine}row2`)
-    })
-    it('should not insert header', () => {
-      const result = csv(columnSet1, dataSet5, ',', true)
-      expect(result).to.equal(`row1${newLine}row2`)
-    })
-  })
-
-  describe('Column Wrapper', () => {
-    it('should not wrap column in extra char', () => {
-      const result = csv(columnSet1, dataSet5, ',', false, '')
-      expect(result).to.equal(`cell1${newLine}row1${newLine}row2`)
-    })
-    it('should wrap column in extra char', () => {
-      const result = csv(columnSet1, dataSet5, ',', false, '"')
-      expect(result).to.equal(`"cell1"${newLine}"row1"${newLine}"row2"`)
-    })
-  })
-
   describe('New line at end', () => {
-    it('should not insert new line at end', () => {
-      const result = csv(columnSet1, dataSet5, ',', false, '', false)
+    it('should not insert new line at end', async () => {
+      const result = await csv({ columns: columnSet1, datas: dataSet5, newLineAtEnd: false})
       expect(result).to.equal(`cell1${newLine}row1${newLine}row2`)
     })
-    it('should insert new line at end', () => {
-      const result = csv(columnSet1, dataSet5, ',', false, '', true)
+    it('should insert new line at end', async () => {
+      const result = await csv({ columns: columnSet1, datas: dataSet5, newLineAtEnd: true})
       expect(result).to.equal(`cell1${newLine}row1${newLine}row2${newLine}`)
     })
   })
