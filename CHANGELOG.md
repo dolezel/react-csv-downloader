@@ -1,5 +1,13 @@
 # Change Log
 
+## [2.0.0] - 2020-07-16
+
+### Breaking changes
+
+- Async processing with splitting to chunks [#187](https://github.com/dolezel/react-csv-downloader/pull/187)
+
+  `csv` function is now async and contents of CSV file are generated asynchronously
+
 ## [1.9.0] - 2020-07-16
 
 ### Added
