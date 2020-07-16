@@ -29,9 +29,9 @@ export default class CsvDownload extends React.Component<ICsvDownloadProps> {
     separator: ',',
   }
 
-  public handleClick = () => {
-    const { suffix, prefix, bom, columns, datas, separator, noHeader, wrapColumnChar, newLineAtEnd } = this.props
-    const csv = toCsv(columns, datas, separator, noHeader, wrapColumnChar, newLineAtEnd)
+  public handleClick = async () => {
+    const { suffix, prefix, bom } = this.props
+    const csv = await toCsv(this.props)
 
     const bomCode = bom ? '\ufeff' : ''
     let { filename } = this.props

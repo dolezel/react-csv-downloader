@@ -8,8 +8,16 @@ export type Columns = ColumnsDefinition | undefined | false
 export type Datas = (string[] | { [key: string]: string })[]
 
 const newLine = '\r\n'
+const raf = typeof requestAnimationFrame === 'function' ? requestAnimationFrame : process.nextTick
 
 const makeWrapper = (wrapChar: string) => (str: string) => `${wrapChar}${str}${wrapChar}`
+const makeResolver = (resolve: (result: string) => unknown, newLineAtEnd: boolean) => (content: string[]) => {
+  if (newLineAtEnd) {
+    content.push('')
+  }
+
+  resolve(content.join(newLine))
+}
 
 const identityMapping = (arr: string[], initialMapping: Record<string, string>): Record<string, string> =>
   arr.reduce(
@@ -41,32 +49,31 @@ const extractHeaderFromColumns = (columns: ColumnsDefinition): Record<string, st
     {},
   )
 
-export default function csv(
-  columns: Columns,
+function toChunks <T>(arr: T[], chunkSize: number): T[][] {
+  return [...Array(Math.ceil(arr.length / chunkSize))].reduce(
+    (acc, _, i) => {
+      const begin = i * chunkSize
+      return acc.concat([arr.slice(begin, begin + chunkSize)])
+    },
+    [],
+  )
+}
+
+const createChunkProcessor = (
+  resolve: ReturnType<typeof makeResolver>,
+  wrap: ReturnType<typeof makeWrapper>,
+  content: string[],
   datas: Datas,
-  separator = ',',
-  noHeader = false,
-  wrapColumnChar = '',
-  newLineAtEnd = false,
-) {
-  const wrap = makeWrapper(wrapColumnChar)
-
-  const header: Record<string, string> = columns
-    ? extractHeaderFromColumns(columns)
-    : extractHeaderFromData(datas)
-
-  const content = []
-
-  if (!noHeader) {
-    const headerNames = Object.values(header)
-    if (headerNames.length > 0) {
-      content.push(headerNames.map(wrap).join(separator))
-    }
-  }
-
-  if (Array.isArray(datas)) {
-    const columnOrder = Object.keys(header)
-    datas
+  columnOrder: string[],
+  separator: string,
+  chunkSize: number
+) => {
+  const chunks = toChunks(datas, chunkSize)
+  let i = 0
+  return function processChunk() {
+    const chunk = chunks[i]
+    i += 1
+    chunk
       .map((v) =>
         Array.isArray(v)
           ? v
@@ -79,11 +86,66 @@ export default function csv(
       .forEach((v) => {
         content.push(v.map(wrap).join(separator))
       })
+    if (i < chunk.length - 1) {
+      raf(processChunk)
+    } else {
+      resolve(content)
+    }
   }
+}
 
-  if (newLineAtEnd) {
-    content.push('')
-  }
+export interface ICsvProps {
+  columns: Columns
+  datas: Datas
+  separator?: string
+  noHeader?: boolean
+  wrapColumnChar?: string
+  newLineAtEnd?: boolean
+  chunkSize?: number
+}
 
-  return content.join(newLine)
+export default async function csv({
+  columns,
+  datas,
+  separator = ',',
+  noHeader = false,
+  wrapColumnChar = '',
+  newLineAtEnd = false,
+  chunkSize = 1000,
+}: ICsvProps) {
+  return new Promise(_resolve => {
+    const resolve = makeResolver(_resolve, newLineAtEnd)
+    const wrap = makeWrapper(wrapColumnChar)
+
+    const header: Record<string, string> = columns
+      ? extractHeaderFromColumns(columns)
+      : extractHeaderFromData(datas)
+
+    const content: string[] = []
+
+    if (!noHeader) {
+      const headerNames = Object.values(header)
+      if (headerNames.length > 0) {
+        content.push(headerNames.map(wrap).join(separator))
+      }
+    }
+
+    if (Array.isArray(datas)) {
+      const columnOrder = Object.keys(header)
+
+      const processChunk = createChunkProcessor(
+        resolve,
+        wrap,
+        content,
+        datas,
+        columnOrder,
+        separator,
+        chunkSize,
+      )
+
+      raf(processChunk)
+    } else {
+      resolve(content)
+    }
+  })
 }
