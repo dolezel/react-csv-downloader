@@ -13,6 +13,7 @@ const dataSet1 = [{ cell1: 'row1' }]
 const dataSet2 = [{ cell1: 'row1', cell2: 'row1' }]
 const dataSet3 = [['cell1', 'cell2']]
 const dataSet4 = [['cell1', 'cell2'], ['cell1', 'cell2']]
+const dataSet5 = [{ cell1: 'row1' }, { cell1: 'row2' }]
 
 describe('CSV Creator', () => {
   describe('Default separator', () => {
@@ -160,6 +161,39 @@ describe('CSV Creator', () => {
     it('array of array datas - with header', () => {
       const result = csv(columnSet4, dataSet4, separator)
       expect(result).to.equal(`cell2${separator}cell1${newLine}cell1${separator}cell2${newLine}cell1${separator}cell2`)
+    })
+  })
+
+  describe('Headers', () => {
+    it('should insert header', () => {
+      const result = csv(columnSet1, dataSet5, ',', false)
+      expect(result).to.equal(`cell1${newLine}row1${newLine}row2`)
+    })
+    it('should not insert header', () => {
+      const result = csv(columnSet1, dataSet5, ',', true)
+      expect(result).to.equal(`row1${newLine}row2`)
+    })
+  })
+
+  describe('Column Wrapper', () => {
+    it('should not wrap column in extra char', () => {
+      const result = csv(columnSet1, dataSet5, ',', false, '')
+      expect(result).to.equal(`cell1${newLine}row1${newLine}row2`)
+    })
+    it('should wrap column in extra char', () => {
+      const result = csv(columnSet1, dataSet5, ',', false, '"')
+      expect(result).to.equal(`"cell1"${newLine}"row1"${newLine}"row2"`)
+    })
+  })
+
+  describe('New line at end', () => {
+    it('should not insert new line at end', () => {
+      const result = csv(columnSet1, dataSet5, ',', false, '', false)
+      expect(result).to.equal(`cell1${newLine}row1${newLine}row2`)
+    })
+    it('should insert new line at end', () => {
+      const result = csv(columnSet1, dataSet5, ',', false, '', true)
+      expect(result).to.equal(`cell1${newLine}row1${newLine}row2${newLine}`)
     })
   })
 })
