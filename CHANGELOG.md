@@ -1,5 +1,11 @@
 # Change Log
 
+## [1.9.0] - 2020-07-16
+
+### Added
+
+- Option for new line at end of file [#185](https://github.com/dolezel/react-csv-downloader/pull/185)
+
 ## [1.8.0] - 2020-04-23
 
 ### Changed
