@@ -16,6 +16,7 @@ export interface ICsvDownloadProps {
   text?: string
   suffix: PrefixSuffix
   wrapColumnChar?: string
+  newLineAtEnd?: boolean
 }
 
 type DefaultProps = 'bom' | 'columns' | 'noHeader' | 'separator'
@@ -29,8 +30,8 @@ export default class CsvDownload extends React.Component<ICsvDownloadProps> {
   }
 
   public handleClick = () => {
-    const { suffix, prefix, bom, columns, datas, separator, noHeader, wrapColumnChar } = this.props
-    const csv = toCsv(columns, datas, separator, noHeader, wrapColumnChar)
+    const { suffix, prefix, bom, columns, datas, separator, noHeader, wrapColumnChar, newLineAtEnd } = this.props
+    const csv = toCsv(columns, datas, separator, noHeader, wrapColumnChar, newLineAtEnd)
 
     const bomCode = bom ? '\ufeff' : ''
     let { filename } = this.props

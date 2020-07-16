@@ -47,6 +47,7 @@ export default function csv(
   separator = ',',
   noHeader = false,
   wrapColumnChar = '',
+  newLineAtEnd = false,
 ) {
   const wrap = makeWrapper(wrapColumnChar)
 
@@ -78,6 +79,10 @@ export default function csv(
       .forEach((v) => {
         content.push(v.map(wrap).join(separator))
       })
+  }
+
+  if (newLineAtEnd) {
+    content.push('')
   }
 
   return content.join(newLine)
