@@ -1,5 +1,11 @@
 # Change Log
 
+## [2.0.1] - 2020-08-03
+
+### Fixed
+
+- Fix processing chunks [#194](https://github.com/dolezel/react-csv-downloader/pull/194)
+
 ## [2.0.0] - 2020-07-16
 
 ### Breaking changes
