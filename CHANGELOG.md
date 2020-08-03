@@ -1,5 +1,11 @@
 # Change Log
 
+## [2.0.2] - 2020-08-03
+
+### Fixed
+
+- Fix processing empty data [#195](https://github.com/dolezel/react-csv-downloader/pull/195)
+
 ## [2.0.1] - 2020-08-03
 
 ### Fixed
