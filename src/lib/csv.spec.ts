@@ -16,6 +16,11 @@ const dataSet4 = [['cell1', 'cell2'], ['cell1', 'cell2']]
 const dataSet5 = [{ cell1: 'row1' }, { cell1: 'row2' }]
 
 describe('CSV Creator', () => {
+  it('Should work with empty data', async () => {
+    const result = await csv({ columns: [], datas: [] })
+    expect(result).to.equal(``)
+  })
+
   describe('Default separator', () => {
     const separator = ','
 

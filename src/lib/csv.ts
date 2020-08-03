@@ -71,6 +71,11 @@ const createChunkProcessor = (
   const chunks = toChunks(datas, chunkSize)
   let i = 0
   return function processChunk() {
+    if (i >= chunks.length) {
+      resolve(content)
+      return
+    }
+
     const chunk = chunks[i]
     i += 1
     chunk
@@ -86,11 +91,8 @@ const createChunkProcessor = (
       .forEach((v) => {
         content.push(v.map(wrap).join(separator))
       })
-    if (i < chunks.length) {
-      raf(processChunk)
-    } else {
-      resolve(content)
-    }
+
+    raf(processChunk)
   }
 }
 
