@@ -174,4 +174,11 @@ describe('CSV Creator', () => {
       expect(result).to.equal(`cell1${newLine}row1${newLine}row2${newLine}`)
     })
   })
+
+  describe('Should process chunks', () => {
+    it('should process each line as a chunk', async () => {
+      const result = await csv({ columns: columnSet1, datas: dataSet5, chunkSize: 1})
+      expect(result).to.equal(`cell1${newLine}row1${newLine}row2`)
+    })
+  })
 })

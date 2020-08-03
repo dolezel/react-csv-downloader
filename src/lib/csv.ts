@@ -86,7 +86,7 @@ const createChunkProcessor = (
       .forEach((v) => {
         content.push(v.map(wrap).join(separator))
       })
-    if (i < chunk.length - 1) {
+    if (i < chunks.length) {
       raf(processChunk)
     } else {
       resolve(content)
