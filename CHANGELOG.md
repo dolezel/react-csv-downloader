@@ -1,5 +1,11 @@
 # Change Log
 
+## [2.1.0] - 2020-09-16
+
+### Added
+
+- Passing props to children [#206](https://github.com/dolezel/react-csv-downloader/pull/206)
+
 ## [2.0.2] - 2020-08-03
 
 ### Fixed
