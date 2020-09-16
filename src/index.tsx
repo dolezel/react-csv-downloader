@@ -11,6 +11,7 @@ export interface ICsvDownloadProps extends ICsvProps {
   prefix: PrefixSuffix
   text?: string
   suffix: PrefixSuffix
+  [key: string]: any
 }
 
 type DefaultProps = 'bom' | 'columns' | 'noHeader' | 'separator'
