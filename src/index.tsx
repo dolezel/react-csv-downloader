@@ -5,31 +5,21 @@ import toCsv, { ICsvProps } from './lib/csv'
 
 export type PrefixSuffix = boolean | string | number
 
-export interface ICsvDownloadProps extends ICsvProps {
-  bom: boolean
+export interface ICsvDownloadProps extends ICsvProps, Omit<React.HTMLAttributes<HTMLDivElement | HTMLButtonElement>, 'prefix'> {
+  bom?: boolean
   filename: string
-  prefix: PrefixSuffix
+  prefix?: PrefixSuffix
+  suffix?: PrefixSuffix
   text?: string
-  suffix: PrefixSuffix
-  [key: string]: any
 }
 
-type DefaultProps = 'bom' | 'columns' | 'noHeader' | 'separator'
-
 export default class CsvDownload extends React.Component<ICsvDownloadProps> {
-  public static defaultProps: Pick<ICsvDownloadProps, DefaultProps> = {
-    bom: true,
-    columns: false,
-    noHeader: false,
-    separator: ',',
-  }
-
   public handleClick = async () => {
     const { suffix, prefix, bom } = this.props
+    let { filename } = this.props
     const csv = await toCsv(this.props)
 
-    const bomCode = bom ? '\ufeff' : ''
-    let { filename } = this.props
+    const bomCode = bom !== false ? '\ufeff' : ''
 
     if (filename.indexOf('.csv') === -1) {
       filename += '.csv'
@@ -56,7 +46,7 @@ export default class CsvDownload extends React.Component<ICsvDownloadProps> {
   public render() {
     const {
       children, text,
-      suffix, prefix, bom,
+      filename, suffix, prefix, bom,
       columns, datas, separator, noHeader, wrapColumnChar, newLineAtEnd, chunkSize,
       ...props
     } = this.props
