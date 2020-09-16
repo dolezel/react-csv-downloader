@@ -76,6 +76,8 @@ You can also use the columns definition to set the columns display order
 | bom           	| boolean           	| true    	|   false  	| Activate or deactivate bom mode                                                   	|
 | newLineAtEnd  	| boolean           	| false   	|   false  	| Insert new line at end of file.                                                   	|
 
+All other props are passed to button or wrapping component.
+
 ## Full example
 pass the downloaded datas as a component prop
 

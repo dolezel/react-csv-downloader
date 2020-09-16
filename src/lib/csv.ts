@@ -97,7 +97,7 @@ const createChunkProcessor = (
 }
 
 export interface ICsvProps {
-  columns: Columns
+  columns?: Columns
   datas: Datas
   separator?: string
   noHeader?: boolean
