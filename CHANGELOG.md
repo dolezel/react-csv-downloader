@@ -1,5 +1,11 @@
 # Change Log
 
+## [2.2.0] - 2020-10-26
+
+### Added
+
+- Support for React v17 [#215](https://github.com/dolezel/react-csv-downloader/pull/215)
+
 ## [2.1.0] - 2020-09-16
 
 ### Added
