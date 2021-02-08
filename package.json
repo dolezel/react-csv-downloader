@@ -34,7 +34,7 @@
   },
   "homepage": "https://github.com/dolezel/react-csv-downloader",
   "engines": {
-    "npm": "6.14.11"
+    "npm": "7.5.2"
   },
   "dependencies": {
     "file-saver": "^2.0.2"
