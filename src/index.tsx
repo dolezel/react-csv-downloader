@@ -21,15 +21,15 @@ export default class CsvDownload extends React.Component<ICsvDownloadProps> {
 
     const bomCode = bom !== false ? '\ufeff' : ''
 
-    if (filename.indexOf('.csv') === -1) {
-      filename += '.csv'
+    if (filename.indexOf('.xlsx') === -1) {
+      filename += '.xlsx'
     }
 
     if (suffix) {
       filename =
         typeof suffix === 'string' || typeof suffix === 'number'
-          ? filename.replace('.csv', `_${suffix}.csv`)
-          : filename.replace('.csv', `_${new Date().getTime()}.csv`)
+          ? filename.replace('.xlsx', `_${suffix}.xlsx`)
+          : filename.replace('.xlsx', `_${new Date().getTime()}.xlsx`)
     }
 
     if (prefix) {
