@@ -8,6 +8,7 @@ export type PrefixSuffix = boolean | string | number
 export interface ICsvDownloadProps extends ICsvProps, Omit<React.HTMLAttributes<HTMLDivElement | HTMLButtonElement>, 'prefix'> {
   bom?: boolean
   filename: string
+  extension?: string
   prefix?: PrefixSuffix
   suffix?: PrefixSuffix
   text?: string
@@ -15,21 +16,22 @@ export interface ICsvDownloadProps extends ICsvProps, Omit<React.HTMLAttributes<
 
 export default class CsvDownload extends React.Component<ICsvDownloadProps> {
   public handleClick = async () => {
-    const { suffix, prefix, bom } = this.props
+    const { suffix, prefix, bom, extension } = this.props
     let { filename } = this.props
     const csv = await toCsv(this.props)
 
     const bomCode = bom !== false ? '\ufeff' : ''
 
-    if (filename.indexOf('.csv') === -1) {
-      filename += '.csv'
+    const resolvedExtension = extension || '.csv'
+    if (filename.indexOf(resolvedExtension) === -1) {
+      filename += resolvedExtension
     }
 
     if (suffix) {
       filename =
         typeof suffix === 'string' || typeof suffix === 'number'
-          ? filename.replace('.csv', `_${suffix}.csv`)
-          : filename.replace('.csv', `_${new Date().getTime()}.csv`)
+          ? filename.replace(resolvedExtension, `_${suffix}${resolvedExtension}`)
+          : filename.replace(resolvedExtension, `_${new Date().getTime()}${resolvedExtension}`)
     }
 
     if (prefix) {
