@@ -67,6 +67,7 @@ You can also use the columns definition to set the columns display order
 | columns       	| array of object   	| null    	|   false  	| Columns definition                                                                	|
 | datas         	| array of object   	| null    	|   true   	| Downloaded datas                                                                  	|
 | filename      	| string            	| null    	|   true   	| You can pass the filename without extension. The extension is automatically added 	|
+| extension      	| string            	| '.csv'  	|   false   | You can pass the file extension, note that it will affect filename                 	|
 | separator     	| string            	| ','     	|   false  	| Columns separator                                                                 	|
 | noHeader      	| boolean           	| false   	|   false  	| If `true` the header isn't added to the csv file                                  	|
 | prefix        	| string or boolean 	| false   	|   false  	| Filename prefix. If `true` prefix becomes a timestamp                             	|
@@ -103,6 +104,7 @@ render() {
     <div>
       <CsvDownloader
         filename="myfile"
+        extension=".csv"
         separator=";"
         wrapColumnChar="'"
         columns={columns}
