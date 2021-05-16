@@ -1,5 +1,11 @@
 # Change Log
 
+## [2.3.0] - 2021-05-16
+
+### Added
+
+- Optional extension [#244](https://github.com/dolezel/react-csv-downloader/pull/244)
+
 ## [2.2.0] - 2020-10-26
 
 ### Added
