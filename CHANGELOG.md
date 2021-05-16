@@ -1,5 +1,11 @@
 # Change Log
 
+## [2.4.0] - 2021-05-16
+
+### Changed
+
+- Proper main/module resolution, using es2015 target [#245](https://github.com/dolezel/react-csv-downloader/pull/245)
+
 ## [2.3.0] - 2021-05-16
 
 ### Added
