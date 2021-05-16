@@ -2,16 +2,15 @@
   "name": "react-csv-downloader",
   "version": "2.3.0",
   "description": "React csv downloader",
-  "main": "dist/index.js",
-  "module": "dist/index.es.js",
-  "jsnext:main": "dist/index.es.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
   "scripts": {
     "test": "mocha --require ./mocha.bootstrap.js \"src/**/*.spec.ts\"",
     "lint": "tslint --project tsconfig.json",
     "start": "npm start --prefix example",
     "prebuild": "rimraf dist",
-    "build": "tsc",
+    "build": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
     "prepare": "npm run build"
   },
   "repository": {
