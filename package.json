@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/dolezel/react-csv-downloader",
   "engines": {
-    "npm": "7.13.0"
+    "npm": "7.14.0"
   },
   "dependencies": {
     "file-saver": "^2.0.2"
@@ -42,8 +42,8 @@
     "@types/chai": "4.2.18",
     "@types/file-saver": "2.0.2",
     "@types/mocha": "8.2.2",
-    "@types/node": "14.14.45",
-    "@types/react": "17.0.5",
+    "@types/node": "14.17.0",
+    "@types/react": "17.0.6",
     "chai": "4.3.4",
     "mocha": "8.4.0",
     "react": "17.0.2",
