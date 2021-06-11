@@ -17,7 +17,11 @@ export interface ICsvDownloadProps extends ICsvProps, Omit<React.HTMLAttributes<
 
 export default class CsvDownload extends React.Component<ICsvDownloadProps> {
   public handleClick = async () => {
-    const { suffix, prefix, bom, extension } = this.props
+    const { suffix, prefix, bom, extension, disabled } = this.props
+
+    if (disabled)
+      return
+
     let { filename } = this.props
     const csv = await toCsv(this.props)
 
@@ -55,20 +59,16 @@ export default class CsvDownload extends React.Component<ICsvDownloadProps> {
       ...props
     } = this.props
 
-    let onClick = this.handleClick
-    if (disabled)
-      onClick = () => Promise.resolve()
-
     if (typeof children === 'undefined') {
       return (
-        <button type="button" {...props} onClick={onClick} disabled={disabled}>
+        <button type="button" {...props} onClick={this.handleClick} disabled={disabled}>
           {text ? text : 'Download'}
         </button>
       )
     }
 
     return (
-      <div role="button" tabIndex={0} {...props} onClick={onClick} onKeyPress={onClick}>
+      <div role="button" tabIndex={0} {...props} onClick={this.handleClick} onKeyPress={this.handleClick}>
         {children}
       </div>
     )
