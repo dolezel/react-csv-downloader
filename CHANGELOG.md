@@ -1,5 +1,11 @@
 # Change Log
 
+## [2.5.0] - 2021-06-19
+
+### Added
+
+- Add disabled option [#252](https://github.com/dolezel/react-csv-downloader/pull/252)
+
 ## [2.4.0] - 2021-05-16
 
 ### Changed
