@@ -12,11 +12,16 @@ export interface ICsvDownloadProps extends ICsvProps, Omit<React.HTMLAttributes<
   prefix?: PrefixSuffix
   suffix?: PrefixSuffix
   text?: string
+  disabled?: boolean
 }
 
 export default class CsvDownload extends React.Component<ICsvDownloadProps> {
   public handleClick = async () => {
-    const { suffix, prefix, bom, extension } = this.props
+    const { suffix, prefix, bom, extension, disabled } = this.props
+
+    if (disabled)
+      return
+
     let { filename } = this.props
     const csv = await toCsv(this.props)
 
@@ -50,12 +55,13 @@ export default class CsvDownload extends React.Component<ICsvDownloadProps> {
       children, text,
       filename, suffix, prefix, bom,
       columns, datas, separator, noHeader, wrapColumnChar, newLineAtEnd, chunkSize,
+      disabled,
       ...props
     } = this.props
 
     if (typeof children === 'undefined') {
       return (
-        <button type="button" {...props} onClick={this.handleClick}>
+        <button type="button" {...props} onClick={this.handleClick} disabled={disabled}>
           {text ? text : 'Download'}
         </button>
       )
