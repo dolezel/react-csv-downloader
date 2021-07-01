@@ -98,7 +98,7 @@ const createChunkProcessor = (
 
 export interface ICsvProps {
   columns?: Columns
-  datas: Datas | (() => Datas) | (() => Promise<Datas>)
+  datas: Datas | (() => Datas) | (() => Promise<Datas>) | Promise<Datas>
   separator?: string
   noHeader?: boolean
   wrapColumnChar?: string
@@ -120,17 +120,17 @@ export default async function csv({
     const wrap = makeWrapper(wrapColumnChar)
 
     if (typeof datas === 'function') {
-      datas = await datas();
+      datas = await datas()
     }
 
     // it is probably a promise lets await for it
     if (typeof ((datas || {}) as any).then === 'function') {
-      datas = await datas;
+      datas = await datas
     }
 
     const header: Record<string, string> = columns
       ? extractHeaderFromColumns(columns)
-      : extractHeaderFromData(datas)
+      : extractHeaderFromData(datas as Datas)
 
     const content: string[] = []
 
