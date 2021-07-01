@@ -98,7 +98,7 @@ const createChunkProcessor = (
 
 export interface ICsvProps {
   columns?: Columns
-  datas: Datas
+  datas: Datas | (() => Datas) | (() => Promise<Datas>)
   separator?: string
   noHeader?: boolean
   wrapColumnChar?: string
@@ -115,9 +115,18 @@ export default async function csv({
   newLineAtEnd = false,
   chunkSize = 1000,
 }: ICsvProps) {
-  return new Promise(_resolve => {
+  return new Promise(async _resolve => {
     const resolve = makeResolver(_resolve, newLineAtEnd)
     const wrap = makeWrapper(wrapColumnChar)
+
+    if (typeof datas === 'function') {
+      datas = await datas();
+    }
+
+    // it is probably a promise lets await for it
+    if (typeof ((datas || {}) as any).then === 'function') {
+      datas = await datas;
+    }
 
     const header: Record<string, string> = columns
       ? extractHeaderFromColumns(columns)
