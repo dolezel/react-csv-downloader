@@ -5,7 +5,7 @@ export interface IColumn {
 
 export type ColumnsDefinition = (string | IColumn)[]
 export type Columns = ColumnsDefinition | undefined | false
-export type Datas = (string[] | { [key: string]: string })[]
+export type Datas = (string[] | { [key: string]: string | null | undefined })[]
 
 const newLine = '\r\n'
 const raf = typeof requestAnimationFrame === 'function' ? requestAnimationFrame : process.nextTick
@@ -33,7 +33,7 @@ const extractHeaderFromColumns = (columns: ColumnsDefinition): Record<string, st
     if (typeof v === 'string') {
       acc[v] = v
     } else {
-      acc[v.id] = typeof v.displayName !== 'undefined' ? v.displayName : v.id
+      acc[v.id] = v.displayName ?? v.id
     }
     return acc
   }, {})
@@ -65,7 +65,7 @@ const createChunkProcessor = (
     const chunk = chunks[i]
     i += 1
     chunk
-      .map((v) => (Array.isArray(v) ? v : columnOrder.map((k) => (typeof v[k] !== 'undefined' ? v[k] : ''))))
+      .map((v) => (Array.isArray(v) ? v : columnOrder.map((k) => v[k] ?? '')))
       .forEach((v) => {
         content.push(v.map(wrap).join(separator))
       })

@@ -17,6 +17,8 @@ const dataSet4 = [
   ['cell1', 'cell2'],
 ]
 const dataSet5 = [{ cell1: 'row1' }, { cell1: 'row2' }]
+const dataSet6 = [{ cell1: 'row1' }, { cell1: null }, { cell1: 'row3' }]
+const dataSet7 = [{ cell1: 'row1' }, { cell1: undefined }, { cell1: 'row3' }]
 
 describe('CSV Creator', () => {
   it('Should work with empty data', async () => {
@@ -201,6 +203,18 @@ describe('CSV Creator', () => {
     it('should process each line as a chunk', async () => {
       const result = await csv({ columns: columnSet1, datas: dataSet5, chunkSize: 1 })
       expect(result).to.equal(`cell1${newLine}row1${newLine}row2`)
+    })
+  })
+
+  describe('Nulls and undefineds', () => {
+    it('should convert null to empty field', async () => {
+      const result = await csv({ columns: columnSet1, datas: dataSet6 })
+      expect(result).to.equal(`cell1${newLine}row1${newLine}${newLine}row3`)
+    })
+
+    it('should convert null to empty field', async () => {
+      const result = await csv({ columns: columnSet1, datas: dataSet7 })
+      expect(result).to.equal(`cell1${newLine}row1${newLine}${newLine}row3`)
     })
   })
 })
