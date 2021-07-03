@@ -1,5 +1,14 @@
 # Change Log
 
+## [2.6.0] - 2021-07-03
+
+### Added
+
+- add support to async datas resolution [#259](https://github.com/dolezel/react-csv-downloader/pull/259)
+- Prettier config [#260](https://github.com/dolezel/react-csv-downloader/pull/260)
+- Exporting toCsv function [#261](https://github.com/dolezel/react-csv-downloader/pull/261)
+- Nulls and undefineds should be converted to empty strings [#262](https://github.com/dolezel/react-csv-downloader/pull/262)
+
 ## [2.5.0] - 2021-06-19
 
 ### Added
