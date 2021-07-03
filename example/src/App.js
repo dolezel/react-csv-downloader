@@ -20,6 +20,11 @@ const datas = [{
   second: 'foobar',
 }];
 
+
+const asyncComputeDatas = async () => {
+  return Promise.resolve(datas);
+}
+
 function App() {
   return (
     <div className="App">
@@ -31,6 +36,15 @@ function App() {
           columns={head}
           datas={datas}
         />
+
+        <CsvDownloader
+          filename="myfile"
+          separator=";"
+          columns={head}
+          datas={asyncComputeDatas}
+          text="Using Async Callback to Compute Datas"
+        />
+
       </header>
     </div>
   );

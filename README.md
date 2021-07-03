@@ -43,7 +43,26 @@ const datas = [{
 
 <CsvDownloader datas={datas}/>
 ```
+### Datas (on demand with async function resolver)
+pass a function to compute datas to be downloaded
 
+```jsx
+
+const asyncFnComputeDate = () => {
+
+  // do whatever you need async
+  return Promise.resolve([{
+    cell1: 'row 1 - cell 1',
+    cell2: 'row 1 - cell 2'
+  }, {
+    cell1: 'row 2 - cell 1',
+    cell2: 'row 2 - cell 2'
+  }]);
+}
+
+
+<CsvDownloader datas={asyncFnComputeDate}/>
+```
 ### Column
 pass the columns definition as a component prop to change the cell display name. If column isn't passed the cell display name is automatically defined with datas keys
 
@@ -65,7 +84,7 @@ You can also use the columns definition to set the columns display order
 | Name          	| Type              	| Default 	| Required 	| Description                                                                       	|
 |---------------	|-------------------	|---------	|----------	|-----------------------------------------------------------------------------------	|
 | columns       	| array of object   	| null    	|   false  	| Columns definition                                                                	|
-| datas         	| array of object   	| null    	|   true   	| Downloaded datas                                                                  	|
+| datas         	| array of object/Func/Promise| null    	|   true   	| Downloaded datas or a Promise or a function that can resolve data on demand (async)                                                                  	|
 | filename      	| string            	| null    	|   true   	| You can pass the filename without extension. The extension is automatically added 	|
 | extension      	| string            	| '.csv'  	|   false   | You can pass the file extension, note that it will affect filename                 	|
 | separator     	| string            	| ','     	|   false  	| Columns separator                                                                 	|
