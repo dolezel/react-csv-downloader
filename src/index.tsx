@@ -3,6 +3,8 @@ import * as React from 'react'
 
 import toCsv, { ICsvProps } from './lib/csv'
 
+export { toCsv, ICsvProps }
+
 export type PrefixSuffix = boolean | string | number
 
 export interface ICsvDownloadProps
