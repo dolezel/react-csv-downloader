@@ -20,43 +20,29 @@ const makeResolver = (resolve: (result: string) => unknown, newLineAtEnd: boolea
 }
 
 const identityMapping = (arr: string[], initialMapping: Record<string, string>): Record<string, string> =>
-  arr.reduce(
-    (acc, k) => {
-      acc[k] = k
-      return acc
-    },
-    initialMapping,
-  )
+  arr.reduce((acc, k) => {
+    acc[k] = k
+    return acc
+  }, initialMapping)
 
 const extractHeaderFromData = (datas: Datas): Record<string, string> =>
-  datas.reduce(
-    (acc: Record<string, string>, v) => Array.isArray(v)
-      ? acc
-      : identityMapping(Object.keys(v), acc),
-    {},
-  )
+  datas.reduce((acc: Record<string, string>, v) => (Array.isArray(v) ? acc : identityMapping(Object.keys(v), acc)), {})
 
 const extractHeaderFromColumns = (columns: ColumnsDefinition): Record<string, string> =>
-  columns.reduce(
-    (acc: Record<string, string>, v) => {
-      if (typeof v === 'string') {
-        acc[v] = v
-      } else {
-        acc[v.id] = (typeof v.displayName !== 'undefined') ? v.displayName : v.id
-      }
-      return acc
-    },
-    {},
-  )
+  columns.reduce((acc: Record<string, string>, v) => {
+    if (typeof v === 'string') {
+      acc[v] = v
+    } else {
+      acc[v.id] = typeof v.displayName !== 'undefined' ? v.displayName : v.id
+    }
+    return acc
+  }, {})
 
-function toChunks <T>(arr: T[], chunkSize: number): T[][] {
-  return [...Array(Math.ceil(arr.length / chunkSize))].reduce(
-    (acc, _, i) => {
-      const begin = i * chunkSize
-      return acc.concat([arr.slice(begin, begin + chunkSize)])
-    },
-    [],
-  )
+function toChunks<T>(arr: T[], chunkSize: number): T[][] {
+  return [...Array(Math.ceil(arr.length / chunkSize))].reduce((acc, _, i) => {
+    const begin = i * chunkSize
+    return acc.concat([arr.slice(begin, begin + chunkSize)])
+  }, [])
 }
 
 const createChunkProcessor = (
@@ -79,15 +65,7 @@ const createChunkProcessor = (
     const chunk = chunks[i]
     i += 1
     chunk
-      .map((v) =>
-        Array.isArray(v)
-          ? v
-          : columnOrder.map((k) =>
-              typeof v[k] !== 'undefined'
-                ? v[k]
-                : '',
-            )
-      )
+      .map((v) => (Array.isArray(v) ? v : columnOrder.map((k) => (typeof v[k] !== 'undefined' ? v[k] : ''))))
       .forEach((v) => {
         content.push(v.map(wrap).join(separator))
       })
@@ -116,7 +94,7 @@ export default async function csv({
   newLineAtEnd = false,
   chunkSize = 1000,
 }: ICsvProps) {
-  return new Promise(async _resolve => {
+  return new Promise(async (_resolve) => {
     const resolve = makeResolver(_resolve, newLineAtEnd)
     const wrap = makeWrapper(wrapColumnChar)
 
@@ -145,15 +123,7 @@ export default async function csv({
     if (Array.isArray(datas)) {
       const columnOrder = Object.keys(header)
 
-      const processChunk = createChunkProcessor(
-        resolve,
-        wrap,
-        content,
-        datas,
-        columnOrder,
-        separator,
-        chunkSize,
-      )
+      const processChunk = createChunkProcessor(resolve, wrap, content, datas, columnOrder, separator, chunkSize)
 
       raf(processChunk)
     } else {

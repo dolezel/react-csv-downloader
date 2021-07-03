@@ -9,5 +9,13 @@
   "bracketSpacing": true,
   "printWidth": 120,
   "quoteProps": "consistent",
-  "endOfLine": "lf"
+  "endOfLine": "lf",
+  "overrides": [
+    {
+      "files": "*.md",
+      "options": {
+        "semi": true
+      }
+    }
+  ]
 }

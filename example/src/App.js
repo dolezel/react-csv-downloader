@@ -1,28 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import logo from './logo.svg'
+import './App.css'
 
-import CsvDownloader from 'react-csv-downloader';
+import CsvDownloader from 'react-csv-downloader'
 
-const head = [{
-  id: 'first',
-  displayName: 'First column',
-}, {
-  id: 'second',
-  displayName: 'Second column',
-}];
+const head = [
+  {
+    id: 'first',
+    displayName: 'First column',
+  },
+  {
+    id: 'second',
+    displayName: 'Second column',
+  },
+]
 
-const datas = [{
-  first: 'foo',
-  second: 'bar',
-}, {
-  first: 'foobar',
-  second: 'foobar',
-}];
-
+const datas = [
+  {
+    first: 'foo',
+    second: 'bar',
+  },
+  {
+    first: 'foobar',
+    second: 'foobar',
+  },
+]
 
 const asyncComputeDatas = async () => {
-  return Promise.resolve(datas);
+  return Promise.resolve(datas)
 }
 
 function App() {
@@ -30,12 +35,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <CsvDownloader
-          filename="myfile"
-          separator=";"
-          columns={head}
-          datas={datas}
-        />
+        <CsvDownloader filename="myfile" separator=";" columns={head} datas={datas} />
 
         <CsvDownloader
           filename="myfile"
@@ -44,10 +44,9 @@ function App() {
           datas={asyncComputeDatas}
           text="Using Async Callback to Compute Datas"
         />
-
       </header>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
