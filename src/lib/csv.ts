@@ -98,7 +98,7 @@ const createChunkProcessor = (
 
 export interface ICsvProps {
   columns?: Columns
-  // eslint-disable-next-line max-union-size
+  // tslint:disable-next-line:max-union-size
   datas: Datas | (() => Datas) | (() => Promise<Datas>) | Promise<Datas>
   separator?: string
   noHeader?: boolean
