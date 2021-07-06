@@ -109,7 +109,7 @@ You can also use the columns definition to set the columns display order
 | bom            | boolean                      | true    | false    | Activate or deactivate bom mode                                                     |
 | newLineAtEnd   | boolean                      | false   | false    | Insert new line at end of file.                                                     |
 | disabled       | boolean                      | false   | false    | If `true` the download process is blocked.                                          |
-| meta           | boolean                      | false   | false    | If `true` the downloaded file will contain meta instrution sep to help microsoft excel and open office ti recognize the sepator character.                                          |
+| meta           | boolean                      | false   | false    | If `true` the downloaded file will contain meta instrution sep to help microsoft excel and open office to recognize the sepator character.                                          |
 
 All other props are passed to button or wrapping component.
 
