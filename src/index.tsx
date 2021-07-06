@@ -17,11 +17,12 @@ export interface ICsvDownloadProps
   suffix?: PrefixSuffix
   text?: string
   disabled?: boolean
+  meta?: boolean
 }
 
 export default class CsvDownload extends React.Component<ICsvDownloadProps> {
   public handleClick = async () => {
-    const { suffix, prefix, bom, extension, disabled } = this.props
+    const { suffix, prefix, bom, extension, disabled, meta, separator } = this.props
 
     if (disabled) {
       return
@@ -31,6 +32,7 @@ export default class CsvDownload extends React.Component<ICsvDownloadProps> {
     const csv = await toCsv(this.props)
 
     const bomCode = bom !== false ? '\ufeff' : ''
+    const metaContent = meta ? `sep=${separator}\r\n` : ''
 
     const resolvedExtension = extension || '.csv'
     if (filename.indexOf(resolvedExtension) === -1) {
@@ -51,7 +53,7 @@ export default class CsvDownload extends React.Component<ICsvDownloadProps> {
           : `${new Date().getTime()}_${filename}`
     }
 
-    const blob = new Blob([`${bomCode}${csv}`], { type: 'text/csv;charset=utf-8' })
+    const blob = new Blob([`${bomCode}${metaContent}${csv}`], { type: 'text/csv;charset=utf-8' })
     FileSaver.saveAs(blob, filename)
   }
 
