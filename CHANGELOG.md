@@ -1,5 +1,12 @@
 # Change Log
 
+## [2.7.0] - 2021-07-09
+
+### Added
+
+- adds support for sep meta instruction [#265](https://github.com/dolezel/react-csv-downloader/pull/265)
+- Making engine less restrictive [#267](https://github.com/dolezel/react-csv-downloader/pull/267)
+
 ## [2.6.0] - 2021-07-03
 
 ### Added
