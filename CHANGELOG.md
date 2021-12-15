@@ -1,5 +1,11 @@
 # Change Log
 
+## [2.7.1] - 2021-12-15
+
+### Added
+
+- Loosen supported npm version [#301](https://github.com/dolezel/react-csv-downloader/pull/301)
+
 ## [2.7.0] - 2021-07-09
 
 ### Added
