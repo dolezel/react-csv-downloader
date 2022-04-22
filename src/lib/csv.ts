@@ -76,7 +76,6 @@ const createChunkProcessor = (
 
 export interface ICsvProps {
   columns?: Columns
-  // tslint:disable-next-line:max-union-size
   datas: Datas | (() => Datas) | (() => Promise<Datas>) | Promise<Datas>
   separator?: string
   noHeader?: boolean
@@ -94,18 +93,12 @@ export default async function csv({
   newLineAtEnd = false,
   chunkSize = 1000,
 }: ICsvProps) {
+  // eslint-disable-next-line no-async-promise-executor
   return new Promise(async (_resolve) => {
     const resolve = makeResolver(_resolve, newLineAtEnd)
     const wrap = makeWrapper(wrapColumnChar)
 
-    if (typeof datas === 'function') {
-      datas = await datas()
-    }
-
-    // it is probably a promise lets await for it
-    if (typeof ((datas || {}) as any).then === 'function') {
-      datas = await datas
-    }
+    datas = typeof datas === 'function' ? await datas() : await datas
 
     const header: Record<string, string> = columns
       ? extractHeaderFromColumns(columns)

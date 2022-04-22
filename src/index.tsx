@@ -53,7 +53,9 @@ export default class CsvDownload extends React.Component<ICsvDownloadProps> {
           : `${new Date().getTime()}_${filename}`
     }
 
-    const blob = new Blob([`${bomCode}${metaContent}${csv}`], { type: 'text/csv;charset=utf-8' })
+    const blob = new Blob([`${bomCode}${metaContent}${csv}`], {
+      type: 'text/csv;charset=utf-8',
+    })
     FileSaver.saveAs(blob, filename)
   }
 
@@ -61,6 +63,8 @@ export default class CsvDownload extends React.Component<ICsvDownloadProps> {
     const {
       children,
       text,
+      disabled,
+      /* eslint-disable @typescript-eslint/no-unused-vars */
       filename,
       suffix,
       prefix,
@@ -72,7 +76,7 @@ export default class CsvDownload extends React.Component<ICsvDownloadProps> {
       wrapColumnChar,
       newLineAtEnd,
       chunkSize,
-      disabled,
+      /* eslint-enable @typescript-eslint/no-unused-vars */
       ...props
     } = this.props
 
