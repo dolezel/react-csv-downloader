@@ -30,6 +30,10 @@ const asyncComputeDatas = async () => {
   return Promise.resolve(datas)
 }
 
+const asyncUndefined = async () => {
+  return Promise.resolve(undefined)
+}
+
 function App() {
   return (
     <div className="App">
@@ -43,6 +47,14 @@ function App() {
           columns={head}
           datas={asyncComputeDatas}
           text="Using Async Callback to Compute Datas"
+        />
+
+        <CsvDownloader
+          filename="myfile"
+          separator=";"
+          columns={head}
+          datas={asyncUndefined}
+          text="Async Callback returning undefined"
         />
       </header>
     </div>
