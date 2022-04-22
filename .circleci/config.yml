@@ -18,7 +18,7 @@ save: &save
     key: code-{{ .Revision }}
     paths:
       - .
-      - "~/.npm-global"
+      - '~/.npm-global'
 
 restore: &restore
   restore_cache:
@@ -45,6 +45,7 @@ jobs:
       - <<: *node-image
     steps:
       - <<: *restore
+      - run: npm i --cwd example
       - run: npm run lint
   test:
     docker:

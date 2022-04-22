@@ -1,4 +1,4 @@
-/* eslint-disable sonarjs/no-duplicate-string */
+/* eslint-disable sonarjs/no-duplicate-string,sonarjs/no-identical-functions */
 import { expect } from 'chai'
 import csv from './csv'
 
