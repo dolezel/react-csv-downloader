@@ -26,7 +26,7 @@ const identityMapping = (arr: string[], initialMapping: Record<string, string>):
   }, initialMapping)
 
 const extractHeaderFromData = (datas: Datas): Record<string, string> =>
-  datas.reduce((acc: Record<string, string>, v) => (Array.isArray(v) ? acc : identityMapping(Object.keys(v), acc)), {})
+  datas?.reduce((acc: Record<string, string>, v) => (Array.isArray(v) ? acc : identityMapping(Object.keys(v), acc)), {})
 
 const extractHeaderFromColumns = (columns: ColumnsDefinition): Record<string, string> =>
   columns.reduce((acc: Record<string, string>, v) => {
