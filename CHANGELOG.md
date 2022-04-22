@@ -1,5 +1,13 @@
 # Change Log
 
+## [2.8.0] - 2022-04-22
+
+### Changed
+
+- Removed tslint, added eslint [#313](https://github.com/dolezel/react-csv-downloader/pull/313)
+- Installs without error with React 18
+- Also fixes error when data is null or undefined
+
 ## [2.7.1] - 2021-12-15
 
 ### Added
