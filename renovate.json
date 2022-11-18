@@ -6,8 +6,5 @@
     "schedule:weekly",
     "group:allNonMajor",
     ":pinOnlyDevDependencies"
-  ],
-  "postUpgradeTasks": {
-    "commands": ["npm run lint -- --fix"]
-  }
+  ]
 }

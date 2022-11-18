@@ -1,5 +1,4 @@
 .*
 mocha*
 node_modules/
-src/
 example/
