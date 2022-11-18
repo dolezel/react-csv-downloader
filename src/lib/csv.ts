@@ -26,7 +26,7 @@ const identityMapping = (arr: string[], initialMapping: Record<string, string>):
   }, initialMapping)
 
 const extractHeaderFromData = (datas: Datas): Record<string, string> =>
-  datas?.reduce((acc: Record<string, string>, v) => (Array.isArray(v) ? acc : identityMapping(Object.keys(v), acc)), {})
+  datas.reduce((acc: Record<string, string>, v) => (Array.isArray(v) ? acc : identityMapping(Object.keys(v), acc)), {})
 
 const extractHeaderFromColumns = (columns: ColumnsDefinition): Record<string, string> =>
   columns.reduce((acc: Record<string, string>, v) => {
@@ -94,33 +94,34 @@ export default async function csv({
   chunkSize = 1000,
 }: ICsvProps) {
   // eslint-disable-next-line no-async-promise-executor
-  return new Promise(async (_resolve) => {
+  return new Promise<void | string>(async (_resolve, reject) => {
     const resolve = makeResolver(_resolve, newLineAtEnd)
     const wrap = makeWrapper(wrapColumnChar)
 
-    datas = typeof datas === 'function' ? await datas() : await datas
-
-    const header: Record<string, string> = columns
-      ? extractHeaderFromColumns(columns)
-      : extractHeaderFromData(datas as Datas)
-
-    const content: string[] = []
-
-    if (!noHeader) {
-      const headerNames = Object.values(header)
-      if (headerNames.length > 0) {
-        content.push(headerNames.map(wrap).join(separator))
+    try {
+      datas = typeof datas === 'function' ? await datas() : await datas
+      if (!Array.isArray(datas)) {
+        return _resolve()
       }
-    }
 
-    if (Array.isArray(datas)) {
+      const header: Record<string, string> = columns ? extractHeaderFromColumns(columns) : extractHeaderFromData(datas)
+
+      const content: string[] = []
+
+      if (!noHeader) {
+        const headerNames = Object.values(header)
+        if (headerNames.length > 0) {
+          content.push(headerNames.map(wrap).join(separator))
+        }
+      }
+
       const columnOrder = Object.keys(header)
 
       const processChunk = createChunkProcessor(resolve, wrap, content, datas, columnOrder, separator, chunkSize)
 
       raf(processChunk)
-    } else {
-      resolve(content)
+    } catch (err) {
+      return reject(err)
     }
   })
 }
