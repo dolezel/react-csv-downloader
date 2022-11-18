@@ -18,19 +18,33 @@ export interface ICsvDownloadProps
   text?: string
   disabled?: boolean
   meta?: boolean
+  handleError?: (err: unknown) => void
+  handleEmpty?: () => void
 }
 
 export default class CsvDownload extends React.Component<ICsvDownloadProps> {
+  // eslint-disable-next-line sonarjs/cognitive-complexity
   public handleClick = async () => {
-    const { suffix, prefix, bom, extension, disabled, meta, separator } = this.props
+    const { suffix, prefix, bom, extension, disabled, meta, separator, handleError, handleEmpty } = this.props
 
     if (disabled) {
       return
     }
 
     let { filename } = this.props
-    const csv = await toCsv(this.props)
-
+    let csv: string | void
+    try {
+      csv = await toCsv(this.props)
+    } catch (err) {
+      return handleError?.(err)
+    }
+    if (!csv) {
+      if (handleEmpty) {
+        return handleEmpty()
+      } else {
+        csv = ''
+      }
+    }
     const bomCode = bom !== false ? '\ufeff' : ''
     const metaContent = meta ? `sep=${separator}\r\n` : ''
 
