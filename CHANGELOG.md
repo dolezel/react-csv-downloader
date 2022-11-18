@@ -1,5 +1,12 @@
 # Change Log
 
+## [2.9.0] - 2022-11-18
+
+### Changed
+
+- Fix sourcemaps [#321](https://github.com/dolezel/react-csv-downloader/pull/321)
+- Handle error and empty data [#322](https://github.com/dolezel/react-csv-downloader/pull/322)
+
 ## [2.8.0] - 2022-04-22
 
 ### Changed
