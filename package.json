@@ -52,7 +52,7 @@
     "eslint": "8.27.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-import": "2.26.0",
-    "eslint-plugin-react": "7.31.10",
+    "eslint-plugin-react": "7.31.11",
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-sonarjs": "0.16.0",
     "mocha": "10.1.0",
