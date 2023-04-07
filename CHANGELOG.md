@@ -1,5 +1,11 @@
 # Change Log
 
+## [2.9.1] - 2023-04-07
+
+### Fixed
+
+- Fix passing props [#347](https://github.com/dolezel/react-csv-downloader/pull/347)
+
 ## [2.9.0] - 2022-11-18
 
 ### Changed
