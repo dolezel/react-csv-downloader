@@ -94,24 +94,24 @@ You can also use the columns definition to set the columns display order
 
 ## Props
 
-| Name           | Type                         | Default   | Required | Description                                                                                                                                |
-| -------------- | ---------------------------- | --------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| columns        | array of object              | null      | false    | Columns definition                                                                                                                         |
-| datas          | array of object/Func/Promise | null      | true     | Downloaded datas or a Promise or a function that can resolve data on demand (async)                                                        |
-| filename       | string                       | null      | true     | You can pass the filename without extension. The extension is automatically added                                                          |
-| extension      | string                       | '.csv'    | false    | You can pass the file extension, note that it will affect filename                                                                         |
-| separator      | string                       | ','       | false    | Columns separator                                                                                                                          |
-| noHeader       | boolean                      | false     | false    | If `true` the header isn't added to the csv file                                                                                           |
-| prefix         | string or boolean            | false     | false    | Filename prefix. If `true` prefix becomes a timestamp                                                                                      |
-| suffix         | string or boolean            | false     | false    | Filename suffix/postfix. If `true` suffix becomes a timestamp                                                                              |
-| text           | string                       | null      | false    | Download button text. Used if no children component.                                                                                       |
-| wrapColumnChar | string                       | ''        | false    | Character to wrap every data and header value with.                                                                                        |
-| bom            | boolean                      | true      | false    | Activate or deactivate bom mode                                                                                                            |
-| newLineAtEnd   | boolean                      | false     | false    | Insert new line at end of file.                                                                                                            |
-| disabled       | boolean                      | false     | false    | If `true` the download process is blocked.                                                                                                 |
-| meta           | boolean                      | false     | false    | If `true` the downloaded file will contain meta instrution sep to help microsoft excel and open office to recognize the sepator character. |
-| handleError    | function                     | undefined | false    | Function to be invoked on error data                                                                                                       |
-| handleEmpty    | function                     | undefined | false    | Function to be invoked on empty result data                                                                                                |
+| Name           | Type                         | Default   | Required | Description                                                                                                                                 |
+| -------------- | ---------------------------- | --------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| columns        | array of object              | null      | false    | Columns definition                                                                                                                          |
+| datas          | array of object/Func/Promise | null      | true     | Downloaded datas or a Promise or a function that can resolve data on demand (async)                                                         |
+| filename       | string                       | null      | true     | You can pass the filename without extension. The extension is automatically added                                                           |
+| extension      | string                       | '.csv'    | false    | You can pass the file extension, note that it will affect filename                                                                          |
+| separator      | string                       | ','       | false    | Columns separator                                                                                                                           |
+| noHeader       | boolean                      | false     | false    | If `true` the header isn't added to the csv file                                                                                            |
+| prefix         | string or boolean            | false     | false    | Filename prefix. If `true` prefix becomes a timestamp                                                                                       |
+| suffix         | string or boolean            | false     | false    | Filename suffix/postfix. If `true` suffix becomes a timestamp                                                                               |
+| text           | string                       | null      | false    | Download button text. Used if no children component.                                                                                        |
+| wrapColumnChar | string                       | ''        | false    | Character to wrap every data and header value with.                                                                                         |
+| bom            | boolean                      | true      | false    | Activate or deactivate bom mode                                                                                                             |
+| newLineAtEnd   | boolean                      | false     | false    | Insert new line at end of file.                                                                                                             |
+| disabled       | boolean                      | false     | false    | If `true` the download process is blocked.                                                                                                  |
+| meta           | boolean                      | false     | false    | If `true` the downloaded file will contain meta instruction sep to help microsoft excel and open office to recognize the sepator character. |
+| handleError    | function                     | undefined | false    | Function to be invoked on error data                                                                                                        |
+| handleEmpty    | function                     | undefined | false    | Function to be invoked on empty result data                                                                                                 |
 
 All other props are passed to button or wrapping component.
 
