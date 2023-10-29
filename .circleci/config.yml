@@ -26,8 +26,9 @@ restore: &restore
 
 jobs:
   install:
+    docker:
+      - image: cimg/base:stable
     steps:
-      - checkout
       - node/install:
           node-version: '20'
       - <<: *set-npm-global
@@ -42,15 +43,19 @@ jobs:
       - <<: *save
   lint:
     docker:
-      - <<: *node-image
+      - image: cimg/base:stable
     steps:
+      - node/install:
+          node-version: '20'
       - <<: *restore
       - run: cd example && npm i
       - run: npm run lint
   test:
     docker:
-      - <<: *node-image
+      - image: cimg/base:stable
     steps:
+      - node/install:
+          node-version: '20'
       - <<: *restore
       - run: npm test
 
