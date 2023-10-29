@@ -19,6 +19,7 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
+      - checkout
       - node/install:
           node-version: '20'
       - run: ls -la
@@ -29,6 +30,7 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
+      - checkout
       - node/install:
           node-version: '20'
       - run: npm i
