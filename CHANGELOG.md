@@ -1,5 +1,11 @@
 # Change Log
 
+## [3.0.0] - 2023-10-29
+
+### Fixed
+
+- Ability to specify column order for arrays of data [#375](https://github.com/dolezel/react-csv-downloader/pull/375)
+
 ## [2.9.1] - 2023-04-07
 
 ### Fixed
