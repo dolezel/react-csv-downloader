@@ -8,6 +8,11 @@ const columnSet1 = [{ id: 'cell1' }]
 const columnSet2 = [{ id: 'cell1' }, { id: 'cell2' }]
 const columnSet3 = [{ id: 'cell1', displayName: 'Cell name' }]
 const columnSet4 = [{ id: 'cell2' }, { id: 'cell1' }]
+const columnSet5 = [
+  { displayName: 'FirstC', id: '2' },
+  { displayName: 'SecondC', id: '1' },
+  { displayName: 'ThirdC', id: '0' },
+]
 
 const dataSet1 = [{ cell1: 'row1' }]
 const dataSet2 = [{ cell1: 'row1', cell2: 'row1' }]
@@ -19,6 +24,7 @@ const dataSet4 = [
 const dataSet5 = [{ cell1: 'row1' }, { cell1: 'row2' }]
 const dataSet6 = [{ cell1: 'row1' }, { cell1: null }, { cell1: 'row3' }]
 const dataSet7 = [{ cell1: 'row1' }, { cell1: undefined }, { cell1: 'row3' }]
+const dataSet8 = [['ThirdD', 'SecondD', 'FirstD']]
 
 describe('CSV Creator', () => {
   it('Should work with empty data', async () => {
@@ -47,6 +53,13 @@ describe('CSV Creator', () => {
     it('Ordered cell', async () => {
       const result = await csv({ columns: columnSet4, datas: dataSet2 })
       expect(result).to.equal(`cell2${separator}cell1${newLine}row1${separator}row1`)
+    })
+
+    it('Ordered cell 2', async () => {
+      const result = await csv({ columns: columnSet5, datas: dataSet8 })
+      expect(result).to.equal(
+        `FirstC${separator}SecondC${separator}ThirdC${newLine}FirstD${separator}SecondD${separator}ThirdD`
+      )
     })
 
     it('No header', async () => {

@@ -7,6 +7,11 @@ export type ColumnsDefinition = (string | IColumn)[]
 export type Columns = ColumnsDefinition | undefined | false
 export type Datas = (string[] | { [key: string]: string | null | undefined })[]
 
+interface Header {
+  order: string[]
+  map: Record<string, string>
+}
+
 const newLine = '\r\n'
 const raf = typeof requestAnimationFrame === 'function' ? requestAnimationFrame : process.nextTick
 
@@ -19,24 +24,41 @@ const makeResolver = (resolve: (result: string) => unknown, newLineAtEnd: boolea
   resolve(content.join(newLine))
 }
 
-const identityMapping = (arr: string[], initialMapping: Record<string, string>): Record<string, string> =>
+const identityMapping = (arr: string[], initialMapping: Header): Header =>
   arr.reduce((acc, k) => {
-    acc[k] = k
+    acc.map[k] = k
+    acc.order.push(k)
     return acc
   }, initialMapping)
 
-const extractHeaderFromData = (datas: Datas): Record<string, string> =>
-  datas.reduce((acc: Record<string, string>, v) => (Array.isArray(v) ? acc : identityMapping(Object.keys(v), acc)), {})
-
-const extractHeaderFromColumns = (columns: ColumnsDefinition): Record<string, string> =>
-  columns.reduce((acc: Record<string, string>, v) => {
-    if (typeof v === 'string') {
-      acc[v] = v
-    } else {
-      acc[v.id] = v.displayName ?? v.id
+const extractHeaderFromData = (datas: Datas): Header =>
+  datas.reduce(
+    (acc: Header, v) => {
+      return Array.isArray(v) ? acc : identityMapping(Object.keys(v), acc)
+    },
+    {
+      order: [],
+      map: {},
     }
-    return acc
-  }, {})
+  )
+
+const extractHeaderFromColumns = (columns: ColumnsDefinition): Header =>
+  columns.reduce(
+    (acc: Header, v) => {
+      let id, value
+      if (typeof v === 'string') {
+        id = v
+        value = v
+      } else {
+        id = v.id
+        value = v.displayName ?? v.id
+      }
+      acc.map[id] = value
+      acc.order.push(id)
+      return acc
+    },
+    { order: [], map: {} }
+  )
 
 function toChunks<T>(arr: T[], chunkSize: number): T[][] {
   return [...Array(Math.ceil(arr.length / chunkSize))].reduce((acc, _, i) => {
@@ -63,9 +85,12 @@ const createChunkProcessor = (
     }
 
     const chunk = chunks[i]
+    // @ts-expect-error
+    const asArray = Array.isArray(chunk[0]) && !columnOrder.some((k) => typeof chunk[0][k] !== 'undefined')
     i += 1
     chunk
-      .map((v) => (Array.isArray(v) ? v : columnOrder.map((k) => v[k] ?? '')))
+      // @ts-expect-error
+      .map((v) => (asArray ? v : columnOrder.map((k) => v[k] ?? '')) as string[])
       .forEach((v) => {
         content.push(v.map(wrap).join(separator))
       })
@@ -104,20 +129,18 @@ export default async function csv({
         return _resolve()
       }
 
-      const header: Record<string, string> = columns ? extractHeaderFromColumns(columns) : extractHeaderFromData(datas)
+      const { map, order }: Header = columns ? extractHeaderFromColumns(columns) : extractHeaderFromData(datas)
 
       const content: string[] = []
 
       if (!noHeader) {
-        const headerNames = Object.values(header)
+        const headerNames = order.map((id) => map[id])
         if (headerNames.length > 0) {
           content.push(headerNames.map(wrap).join(separator))
         }
       }
 
-      const columnOrder = Object.keys(header)
-
-      const processChunk = createChunkProcessor(resolve, wrap, content, datas, columnOrder, separator, chunkSize)
+      const processChunk = createChunkProcessor(resolve, wrap, content, datas, order, separator, chunkSize)
 
       raf(processChunk)
     } catch (err) {
