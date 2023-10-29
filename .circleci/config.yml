@@ -22,7 +22,6 @@ jobs:
       - checkout
       - node/install:
           node-version: '20'
-      - run: ls -la
       - run: npm i
       - run: cd example && npm i
       - run: npm run lint
