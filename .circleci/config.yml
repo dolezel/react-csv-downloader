@@ -15,27 +15,13 @@ restore: &restore
     key: code-{{ .Revision }}
 
 jobs:
-  install:
-    docker:
-      - image: cimg/base:stable
-    steps:
-      - node/install:
-          node-version: '20'
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run: npm i
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
-      - <<: *save
   lint:
     docker:
       - image: cimg/base:stable
     steps:
       - node/install:
           node-version: '20'
-      - <<: *restore
+      - run: npm i
       - run: cd example && npm i
       - run: npm run lint
   test:
@@ -44,7 +30,7 @@ jobs:
     steps:
       - node/install:
           node-version: '20'
-      - <<: *restore
+      - run: npm i
       - run: npm test
 
 workflows:
