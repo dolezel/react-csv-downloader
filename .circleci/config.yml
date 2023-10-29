@@ -1,7 +1,7 @@
-version: 2
+version: 2.1
 
-node-image: &node-image
-  image: circleci/node:16
+orbs:
+  node: circleci/node@5.1.0
 
 set-npm-global: &set-npm-global
   run:
@@ -26,10 +26,10 @@ restore: &restore
 
 jobs:
   install:
-    docker:
-      - <<: *node-image
     steps:
       - checkout
+      - node/install:
+          node-version: '20'
       - <<: *set-npm-global
       - run: npm install -g npm@$(jq -r '.engines.npm' package.json)
       - restore_cache:
