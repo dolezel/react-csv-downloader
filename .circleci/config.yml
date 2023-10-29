@@ -37,10 +37,5 @@ workflows:
   version: 2
   main_workflow:
     jobs:
-      - install
-      - lint:
-          requires:
-            - install
-      - test:
-          requires:
-            - install
+      - lint
+      - test
