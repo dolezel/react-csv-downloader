@@ -78,7 +78,6 @@ export default class CsvDownload extends React.Component<ICsvDownloadProps> {
     const {
       children,
       text,
-      title,
       disabled,
       /* eslint-disable @typescript-eslint/no-unused-vars */
       bom,
