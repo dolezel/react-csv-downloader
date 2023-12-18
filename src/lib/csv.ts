@@ -107,6 +107,7 @@ export interface ICsvProps {
   wrapColumnChar?: string
   newLineAtEnd?: boolean
   chunkSize?: number
+  title?: string
 }
 
 export default async function csv({
@@ -117,6 +118,7 @@ export default async function csv({
   wrapColumnChar = '',
   newLineAtEnd = false,
   chunkSize = 1000,
+  title = '',
 }: ICsvProps) {
   // eslint-disable-next-line no-async-promise-executor
   return new Promise<void | string>(async (_resolve, reject) => {
@@ -136,6 +138,8 @@ export default async function csv({
       if (!noHeader) {
         const headerNames = order.map((id) => map[id])
         if (headerNames.length > 0) {
+          if(title!=='')
+            content.push(title)
           content.push(headerNames.map(wrap).join(separator))
         }
       }

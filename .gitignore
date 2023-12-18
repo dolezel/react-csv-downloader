@@ -3,3 +3,4 @@
 node_modules/
 dist/
 example/package-lock.json
+example/node_modules/

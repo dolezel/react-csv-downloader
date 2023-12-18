@@ -50,6 +50,15 @@ function App() {
         />
 
         <CsvDownloader
+          filename="myfileWithTitle"
+          separator=";"
+          columns={head}
+          title={'Title for the file'}
+          datas={asyncComputeDatas}
+          text="Using Async Callback to Compute Datas with Title"
+        />
+
+        <CsvDownloader
           filename="myfile"
           separator=";"
           columns={head}
