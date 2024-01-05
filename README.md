@@ -111,7 +111,8 @@ You can also use the columns definition to set the columns display order
 | disabled       | boolean                      | false     | false    | If `true` the download process is blocked.                                                                                                  |
 | meta           | boolean                      | false     | false    | If `true` the downloaded file will contain meta instruction sep to help microsoft excel and open office to recognize the sepator character. |
 | handleError    | function                     | undefined | false    | Function to be invoked on error data                                                                                                        |
-| handleEmpty    | function                     | undefined | false    | Function to be invoked on empty result data                                                                                                 |
+| handleEmpty    | function                     | undefined | false    | Function to be invoked on empty result data     
+| title          | string                       | undefined | false    | You can pass a string to be added as a title at the top of the sheet
 
 All other props are passed to button or wrapping component.
 
