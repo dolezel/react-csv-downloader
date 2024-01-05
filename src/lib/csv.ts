@@ -138,7 +138,7 @@ export default async function csv({
       if (!noHeader) {
         const headerNames = order.map((id) => map[id])
         if (headerNames.length > 0) {
-          if(title!=='')
+          if (title !== '')
             content.push(title)
           content.push(headerNames.map(wrap).join(separator))
         }
