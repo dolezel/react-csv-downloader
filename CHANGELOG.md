@@ -1,5 +1,11 @@
 # Change Log
 
+## [3.1.0] - 2024-01-06
+
+### Added
+
+- Ability to add title at top of the csv [#386](https://github.com/dolezel/react-csv-downloader/pull/386)
+
 ## [3.0.0] - 2023-10-29
 
 ### Fixed
