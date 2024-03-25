@@ -41,13 +41,13 @@
     "file-saver": "^2.0.2"
   },
   "devDependencies": {
-    "@types/chai": "4.3.12",
+    "@types/chai": "4.3.14",
     "@types/file-saver": "2.0.7",
     "@types/mocha": "10.0.6",
-    "@types/node": "20.11.28",
-    "@types/react": "18.2.66",
-    "@typescript-eslint/eslint-plugin": "7.2.0",
-    "@typescript-eslint/parser": "7.2.0",
+    "@types/node": "20.11.30",
+    "@types/react": "18.2.69",
+    "@typescript-eslint/eslint-plugin": "7.3.1",
+    "@typescript-eslint/parser": "7.3.1",
     "chai": "4.4.1",
     "eslint": "8.57.0",
     "eslint-config-prettier": "9.1.0",
@@ -61,7 +61,7 @@
     "react": "18.2.0",
     "rimraf": "5.0.5",
     "ts-node": "10.9.2",
-    "typescript": "5.4.2"
+    "typescript": "5.4.3"
   },
   "peerDependencies": {
     "react": "^16.6.3 || ^17.0.0 || ^18.0.0"
