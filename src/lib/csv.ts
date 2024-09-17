@@ -26,8 +26,10 @@ const makeResolver = (resolve: (result: string) => unknown, newLineAtEnd: boolea
 
 const identityMapping = (arr: string[], initialMapping: Header): Header =>
   arr.reduce((acc, k) => {
-    acc.map[k] = k
-    acc.order.push(k)
+    if (!acc.map[k]) {
+      acc.map[k] = k
+      acc.order.push(k)
+    }
     return acc
   }, initialMapping)
 
