@@ -310,4 +310,16 @@ describe('CSV Creator', () => {
       expect(result).to.equal(`cell1${newLine}row1${newLine}${newLine}row3`)
     })
   })
+
+  describe('Issue #411', () => {
+    it('should not duplicate columns', async () => {
+      let data = [
+        { k1: 'v1', k2: 'v2' },
+        { k1: 'v3', k2: 'v4' },
+        { k1: 'v5', k2: 'v6' },
+      ]
+      const result = await csv({ datas: data })
+      expect(result).to.equal(`k1,k2${newLine}v1,v2${newLine}v3,v4${newLine}v5,v6`)
+    })
+  })
 })
