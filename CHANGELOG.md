@@ -1,5 +1,11 @@
 # Change Log
 
+## [3.1.1] - 2024-09-17
+
+### Fixed
+
+- Fix duplicate columns [#438](https://github.com/dolezel/react-csv-downloader/pull/438)
+
 ## [3.1.0] - 2024-01-06
 
 ### Added
