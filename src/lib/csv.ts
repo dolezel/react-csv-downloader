@@ -5,7 +5,7 @@ export interface IColumn {
 
 export type ColumnsDefinition = (string | IColumn)[]
 export type Columns = ColumnsDefinition | undefined | false
-export type Datas = (string[] | { [key: string]: string | null | undefined })[]
+export type Datas = (string[] | { [key: string]: string | number | null | undefined })[]
 
 interface Header {
   order: string[]

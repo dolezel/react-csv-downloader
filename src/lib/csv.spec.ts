@@ -322,4 +322,16 @@ describe('CSV Creator', () => {
       expect(result).to.equal(`k1,k2${newLine}v1,v2${newLine}v3,v4${newLine}v5,v6`)
     })
   })
+
+  describe('Numbers', () => {
+    it('should be ok', async () => {
+      const people = [
+        { name: 'Alice', age: 25 },
+        { name: 'Bob', age: 27 },
+        { name: 'Charlie', age: 40 },
+      ]
+      const result = await csv({ datas: people })
+      expect(result).to.equal(`name,age${newLine}Alice,25${newLine}Bob,27${newLine}Charlie,40`)
+    })
+  })
 })
