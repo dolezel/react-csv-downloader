@@ -1,5 +1,11 @@
 # Change Log
 
+## [3.2.0] - 2024-12-18
+
+### Added
+
+- Allowing number type [#450](https://github.com/dolezel/react-csv-downloader/pull/450)
+
 ## [3.1.1] - 2024-09-17
 
 ### Fixed
