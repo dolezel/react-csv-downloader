@@ -21,7 +21,7 @@ jobs:
     steps:
       - checkout
       - node/install:
-          node-version: '20'
+          node-version: '22'
       - run: npm i
       - run: cd example && npm i
       - run: npm run lint
@@ -31,7 +31,7 @@ jobs:
     steps:
       - checkout
       - node/install:
-          node-version: '20'
+          node-version: '22'
       - run: npm i
       - run: npm test
 

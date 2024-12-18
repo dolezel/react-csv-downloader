@@ -24,7 +24,6 @@ export interface ICsvDownloadProps
 }
 
 export default class CsvDownload extends React.Component<ICsvDownloadProps> {
-  // eslint-disable-next-line sonarjs/cognitive-complexity
   public handleClick = async () => {
     const { suffix, prefix, bom, extension, disabled, meta, separator, handleError, handleEmpty } = this.props
 

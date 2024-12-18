@@ -87,11 +87,11 @@ const createChunkProcessor = (
     }
 
     const chunk = chunks[i]
-    // @ts-expect-error
+    // @ts-expect-error 7053
     const asArray = Array.isArray(chunk[0]) && !columnOrder.some((k) => typeof chunk[0][k] !== 'undefined')
     i += 1
     chunk
-      // @ts-expect-error
+      // @ts-expect-error 7053
       .map((v) => (asArray ? v : columnOrder.map((k) => v[k] ?? '')) as string[])
       .forEach((v) => {
         content.push(v.map(wrap).join(separator))
