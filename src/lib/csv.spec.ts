@@ -1,4 +1,3 @@
-/* eslint-disable sonarjs/no-duplicate-string,sonarjs/no-identical-functions */
 import { expect } from 'chai'
 import csv from './csv'
 
@@ -313,7 +312,7 @@ describe('CSV Creator', () => {
 
   describe('Issue #411', () => {
     it('should not duplicate columns', async () => {
-      let data = [
+      const data = [
         { k1: 'v1', k2: 'v2' },
         { k1: 'v3', k2: 'v4' },
         { k1: 'v5', k2: 'v6' },

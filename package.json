@@ -7,7 +7,7 @@
   "types": "dist/esm/index.d.ts",
   "scripts": {
     "test": "mocha --require ./mocha.bootstrap.js \"src/**/*.spec.ts\"",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
+    "lint": "eslint",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|jsx|ts|tsx|json)\"",
     "start": "npm start --prefix example",
     "prebuild": "rimraf dist",
@@ -41,27 +41,28 @@
     "file-saver": "^2.0.2"
   },
   "devDependencies": {
+    "@eslint/js": "9.17.0",
     "@types/chai": "4.3.20",
     "@types/file-saver": "2.0.7",
     "@types/mocha": "10.0.10",
     "@types/node": "22.10.2",
     "@types/react": "18.3.16",
-    "@typescript-eslint/eslint-plugin": "8.18.0",
-    "@typescript-eslint/parser": "8.18.0",
     "chai": "4.5.0",
-    "eslint": "8.57.1",
+    "eslint": "9.17.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-import": "2.31.0",
     "eslint-plugin-prettier": "5.2.1",
     "eslint-plugin-react": "7.37.2",
     "eslint-plugin-react-hooks": "5.1.0",
-    "eslint-plugin-sonarjs": "0.25.1",
+    "eslint-plugin-sonarjs": "3.0.1",
+    "globals": "15.13.0",
     "mocha": "10.8.2",
     "prettier": "3.4.2",
     "react": "18.3.1",
     "rimraf": "6.0.1",
     "ts-node": "10.9.2",
-    "typescript": "5.7.2"
+    "typescript": "5.7.2",
+    "typescript-eslint": "8.18.1"
   },
   "peerDependencies": {
     "react": "^16.6.3 || ^17.0.0 || ^18.0.0"
