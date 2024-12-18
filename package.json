@@ -6,7 +6,7 @@
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
   "scripts": {
-    "test": "mocha --require ./mocha.bootstrap.js \"src/**/*.spec.ts\"",
+    "test": "mocha --require ./mocha.bootstrap.js --require chai/register-expect.js \"src/**/*.spec.ts\"",
     "lint": "eslint",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|jsx|ts|tsx|json)\"",
     "start": "npm start --prefix example",
@@ -56,7 +56,7 @@
     "eslint-plugin-react-hooks": "5.1.0",
     "eslint-plugin-sonarjs": "3.0.1",
     "globals": "15.13.0",
-    "mocha": "10.8.2",
+    "mocha": "11.0.1",
     "prettier": "3.4.2",
     "react": "18.3.1",
     "rimraf": "6.0.1",

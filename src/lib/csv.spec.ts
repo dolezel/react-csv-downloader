@@ -1,5 +1,6 @@
-import { expect } from 'chai'
 import csv from './csv'
+
+const expect = (globalThis as { expect?: Chai.ExpectStatic }).expect!
 
 const newLine = '\r\n'
 
