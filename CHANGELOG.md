@@ -1,5 +1,11 @@
 # Change Log
 
+## [3.3.0] - 2024-12-30
+
+### Added
+
+- React 19 support [#460](https://github.com/dolezel/react-csv-downloader/pull/460)
+
 ## [3.2.0] - 2024-12-18
 
 ### Added
