@@ -1,6 +1,6 @@
 {
   "name": "react-csv-downloader",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "description": "React csv downloader",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
