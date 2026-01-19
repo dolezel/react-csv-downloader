@@ -8,8 +8,7 @@ export { toCsv, ICsvProps }
 export type PrefixSuffix = boolean | string | number
 
 export interface ICsvDownloadProps
-  extends ICsvProps,
-    Omit<React.HTMLAttributes<HTMLDivElement | HTMLButtonElement>, 'prefix'> {
+  extends ICsvProps, Omit<React.HTMLAttributes<HTMLDivElement | HTMLButtonElement>, 'prefix'> {
   bom?: boolean
   filename: string
   extension?: string
