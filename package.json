@@ -61,7 +61,7 @@
     "react": "19.2.0",
     "rimraf": "6.1.2",
     "ts-node": "10.9.2",
-    "typescript": "5.9.3",
+    "typescript": "6.0.3",
     "typescript-eslint": "8.47.0"
   },
   "peerDependencies": {
